@@ -113,12 +113,6 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
   }
 });
 
-// Profile
-// GET route ==> to display the profile form to users
-router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("user/profile", { userInSession: req.session.currentUser });
-});
-
 //Logout
 router.post("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
