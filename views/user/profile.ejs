@@ -1,4 +1,7 @@
 <a href="/">Home</a>
+<form id="logout-form" action="/logout" method="POST">
+    <button>Logout</button>
+</form>
 
 <% if(userInSession) { %>
     <h1>Welcome <%= userInSession.username %>! </h1>

@@ -7,18 +7,21 @@ const bcryptjs = require("bcryptjs");
 //import User Schema
 const User = require("../models/User.model");
 
+// require auth middleware
+const { isLoggedIn, isLoggedOut } = require("../middleware/route-guard");
+
 // Use RegEx To Test Password Strength
 // must be matched 8 or more times
 // need to match the special characters [@$!%*?&]
 const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
 
 /* GET signup page */
-router.get("/signup", (req, res) => {
+router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
 // POST route ==> to process form data
-router.post("/signup", async (req, res, next) => {
+router.post("/signup", isLoggedOut, async (req, res, next) => {
   try {
     // Find the username in DB if exists
     const findUserName = await User.findOne({ username: req.body.username });
@@ -73,12 +76,12 @@ router.post("/signup", async (req, res, next) => {
 
 // Login
 // GET route ==> to display the login form to users
-router.get("/login", (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
 // POST login route ==> to process form data
-router.post("/login", async (req, res, next) => {
+router.post("/login", isLoggedOut, async (req, res, next) => {
   try {
     console.log("SESSION =====> ", req.session);
     // Find username in DB
@@ -112,8 +115,16 @@ router.post("/login", async (req, res, next) => {
 
 // Profile
 // GET route ==> to display the profile form to users
-router.get("/profile", (req, res) => {
-  res.render("auth/profile", { userInSession: req.session.currentUser });
+router.get("/profile", isLoggedIn, (req, res) => {
+  res.render("user/profile", { userInSession: req.session.currentUser });
+});
+
+//Logout
+router.post("/logout", isLoggedIn, (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) next(err);
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
