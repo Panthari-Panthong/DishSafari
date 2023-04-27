@@ -1,3 +1,9 @@
 <a href="/">Home</a>
 
-<h1>Welcome</h1>
+<% if(userInSession) { %>
+    <h1>Welcome <%= userInSession.username %>! </h1>
+    <p>This is all your Recipes!</p>
+    <% } else { %>
+        <br>
+        <p>Still no logged in user, sorry!</p>
+        <% } %>

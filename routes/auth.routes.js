@@ -80,6 +80,7 @@ router.get("/login", (req, res) => {
 // POST login route ==> to process form data
 router.post("/login", async (req, res, next) => {
   try {
+    console.log("SESSION =====> ", req.session);
     // Find username in DB
     const user = await User.findOne({ username: req.body.username });
 
@@ -91,6 +92,8 @@ router.post("/login", async (req, res, next) => {
     if (!!user) {
       // Check If password is correct
       if (bcryptjs.compareSync(req.body.password, user.password)) {
+        //******* SAVE THE USER IN THE SESSION ********//
+        req.session.currentUser = user;
         res.redirect("/profile");
         // If password is wrong
         // Send back to login page
@@ -110,7 +113,7 @@ router.post("/login", async (req, res, next) => {
 // Profile
 // GET route ==> to display the profile form to users
 router.get("/profile", (req, res) => {
-  res.render("auth/profile");
+  res.render("auth/profile", { userInSession: req.session.currentUser });
 });
 
 module.exports = router;
