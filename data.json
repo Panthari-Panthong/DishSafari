@@ -44,7 +44,7 @@
       "7. Serve with extra gravy."
     ],
     "recipeType": "Meat",
-    "createdBy": {}
+    "createdBy": []
   },
   {
     "title": "Pad Thai",
@@ -81,7 +81,7 @@
       "5. Stir in tamarind mixture, 1 1/2 tablespoons sugar, and salt; cook until noodles are tender, 3 to 5 minutes. Stir in peanuts and cook until heated through, 1 to 2 minutes. Garnish with bean sprouts, chives, and paprika; serve with lime wedges."
     ],
     "recipeType": "Meat",
-    "createdBy": {}
+    "createdBy": []
   },
   {
     "title": "Khao Soi",
@@ -122,7 +122,7 @@
       "5. Divide soup among 6 bowls and top with fried noodles, pickled cabbage, cilantro, and lime wedges."
     ],
     "recipeType": "Meat",
-    "createdBy": {}
+    "createdBy": []
   },
   {
     "title": "Welsh Rarebit",
@@ -154,7 +154,7 @@
       "5. Place under the preheated broiler until cheese sauce is bubbling and golden, 2 to 3 minutes."
     ],
     "recipeType": "Vegetarian",
-    "createdBy": {}
+    "createdBy": []
   },
   {
     "title": "Chakalaka",
@@ -183,6 +183,6 @@
       "2. Add carrots, tomatoes, green chiles, water, bouillon cube, curry powder, chili powder, salt, and pepper. Cook until mixture is well combined and thickened, 15 to 20 minutes."
     ],
     "recipeType": "Vegan",
-    "createdBy": ""
+    "createdBy": []
   }
 ]

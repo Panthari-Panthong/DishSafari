@@ -8,10 +8,13 @@ const data = require("../data.json");
 //GET all the recipes
 router.get("/", async (req, res, next) => {
   try {
-    const createRecipes = await Recipe.insertMany(data);
-    console.log(createRecipes)
-    /* const allRecipes = await Recipe.create(); */
-    res.render("recipe/allRecipes", { recipe: createRecipes });
+    
+    await Recipe.deleteMany();
+
+    await Recipe.insertMany(data);
+
+    const allRecipes = await Recipe.find();
+    res.render("recipe/allRecipes", { allRecipes });
   } catch (error) {
     console.error(error);
   }
