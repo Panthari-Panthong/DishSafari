@@ -3,6 +3,7 @@
     <button>Logout</button>
 </form>
 
+
 <% if(userInSession) { %>
     <h1>Welcome <%= userInSession.username %>! </h1>
     <p>This is all your Recipes!</p>
@@ -10,3 +11,5 @@
         <br>
         <p>Still no logged in user, sorry!</p>
         <% } %>
+
+            <a href="/create">Create Recipe!</a>
