@@ -43,16 +43,31 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
 } 
 });
 
-//GET random recipe
-/* router.get('/randomRecipe', (req, res) => {
-    data.getRandom()
-    .then((randomRecipe) => {
-      console.log(randomRecipe)
-      res.render('randomRecipe', {randomRecipe})
-    })
-    .catch((error) => {
-      console.error(error)
-    })
-}) */
+//POST filter recipes
+router.post('/recipes/filter', async (req, res) => {
+    try {
+    const titleFromUser = await req.body.title
+    await Recipe.find({title: titleFromUser})
+
+    const recipeTypeFromUser = await req.body.recipeType
+    await Recipe.find({recipeType: recipeTypeFromUser})
+
+    const mealTypeFromUser = await req.body.mealType
+    await Recipe.find({recipeType: mealTypeFromUser})
+
+    const levelFromUser = await req.body.level
+    await Recipe.find({recipeType: levelFromUser})
+
+    const continentFromUser = await req.body.continent
+    await Recipe.find({recipeType: continentFromUser})
+
+    const countryFromUser = await req.body.countryOfOrigin
+    await Recipe.find({recipeType: countryFromUser})
+
+    res.redirect('/recipes')
+  } catch (error) {
+    console.error(error);
+  }
+})
 
 module.exports = router;
