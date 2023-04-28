@@ -8,7 +8,6 @@ const data = require("../data.json");
 //GET all the recipes
 router.get("/", async (req, res, next) => {
   try {
-    
     await Recipe.deleteMany();
 
     await Recipe.insertMany(data);
@@ -21,17 +20,39 @@ router.get("/", async (req, res, next) => {
 });
 
 //GET one recipe
-router.get('/:recipeId', async (req, res) => {
-    try {
-      const oneRecipe = await Recipe.findById(req.params.recipeId)
-      if (!oneRecipe) {
-        res.redirect('/recipe')
-      } else {
-        res.render('recipe/oneRecipe', oneRecipe)
-      }
+router.get("/:recipeId", async (req, res, next) => {
+  try {
+    const onlyOneRecipe = await Recipe.findById(req.params.recipeId);
+      res.render("recipe/oneRecipe", { onlyOneRecipe });
     } catch (error) {
-      console.log(error)
-    }
-  })
+    console.error(error);
+  }
+});
+
+//GET random recipe
+router.get("/recipe/randomRecipe", async (req, res, next) => {
+    try {
+  const oneRandomRecipe = await Recipe.find();
+  const randomRecipeLength = oneRandomRecipe.length;
+  const randomRecipeIndex = Math.floor(Math.random() *randomRecipeLength)
+  const randomRecipe = oneRandomRecipe[randomRecipeIndex];
+  res.render("recipe/randomRecipe", {randomRecipe});
+  
+} catch (error) {
+    console.error(error);
+} 
+});
+
+//GET random recipe
+/* router.get('/randomRecipe', (req, res) => {
+    data.getRandom()
+    .then((randomRecipe) => {
+      console.log(randomRecipe)
+      res.render('randomRecipe', {randomRecipe})
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+}) */
 
 module.exports = router;
