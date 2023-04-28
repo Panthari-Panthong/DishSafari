@@ -1,54 +1,45 @@
-<h2>All Recipes</h2>
+<h1 class="logo">All DishSafari Recipes</h1>
 <a href="/recipes/recipe/randomRecipe">Random Recipe</a>
 
-<form action="recipes/filter" method="POST">
-  <label for="">Title: <input type="text" name="title" /></label>
-  <label
-    >Recipe Type:
-    <select name="recipeType">
-      <% allRecipes.forEach(recipe => { %>
-      <option value="recipeType"><%- recipe.recipeType %></option>
-      <% }) %>
-    </select>
-  </label>
-  <label
-    >Meal Type:
-    <select name="mealType">
-      <% allRecipes.forEach(recipe => { %>
-      <option value="mealType"><%- recipe.mealType %></option>
-      <% }) %>
-    </select>
-  </label>
-  <label
-    >Level:
-    <select name="level">
-      <% allRecipes.forEach(recipe => { %>
-      <option value="level"><%- recipe.level %></option>
-      <% }) %>
-    </select>
-  </label>
-  <label
-    >Continent:
-    <select name="continent">
-      <% allRecipes.forEach(recipe => { %>
-      <option value="continent"><%- recipe.continent %></option>
-      <% }) %>
-    </select>
-  </label>
-  <label
-    >Country of origin:
-    <select name="countryOfOrigin">
-      <% allRecipes.forEach(recipe => { %>
-      <option value="countryOfOrigin"><%- recipe.countryOfOrigin %></option>
-      <% }) %>
-    </select>
-  </label>
-  <button type="submit">Search</button>
-</form>
+<div id="filter">
+    <h3>Filter Recipes</h3>
+<form action="/recipes/filter" method="POST">
+    <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label>
+    <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
+        <option value="meat">Meat</option>
+        <option value="fish">Fish</option>
+        <option value="vegetarian" selected>Vegetarian</option>
+        <option value="vegan">Vegan</option>
+    </select></label>
+    <label for="mealType">Meal Type: <select name="mealType" id="mealType">
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner" selected>Dinner</option>
+        <option value="snack">Snack</option>
+        <option value="dessert">Dessert</option>
+    </select></label>
+    <label for="level">Level: <select name="level" id="level">
+        <option value="Novice">Novice</option>
+        <option value="Intermediate" selected>Intermediate</option>
+        <option value="advanced">Advanced</option>
+        <option value="expert">Expert</option>
+    </select></label>
+    <label for="continent">Continent: <select name="continent" id="continent">
+        <option value="Asia">Asia</option>
+        <option value="Africa">Africa</option>
+        <option value="Australia" selected>Australia</option>
+        <option value="europe">Europe</option>
+        <option value="northAmerica">North America</option>
+        <option value="southAmerica">South America</option>
+    </select></label>
+    <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label>
+    <button type="submit">Filter</button>
+  </form>
+</div>
+  
 
-<ul>
   <% allRecipes.forEach(recipe => { %>
-  <li><a href="/recipes/<%- recipe._id %>"><%= recipe.title %></a></li>
-  <li><img src="<%= recipe.image %>" alt="" /></li>
+    <img src="<%= recipe.image %>" alt="" height="250px"/>
+  <a href="/recipes/<%- recipe._id %>"><h3><%= recipe.title %></h3></a>
   <% }) %>
-</ul>
+

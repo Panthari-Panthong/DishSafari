@@ -48,21 +48,22 @@ router.post('/recipes/filter', async (req, res) => {
     try {
     const titleFromUser = await req.body.title
     await Recipe.find({title: titleFromUser})
+    console.log({title: titleFromUser})
 
     const recipeTypeFromUser = await req.body.recipeType
     await Recipe.find({recipeType: recipeTypeFromUser})
 
     const mealTypeFromUser = await req.body.mealType
-    await Recipe.find({recipeType: mealTypeFromUser})
+    await Recipe.find({mealType: mealTypeFromUser})
 
     const levelFromUser = await req.body.level
-    await Recipe.find({recipeType: levelFromUser})
+    await Recipe.find({level: levelFromUser})
 
     const continentFromUser = await req.body.continent
-    await Recipe.find({recipeType: continentFromUser})
+    await Recipe.find({continent: continentFromUser})
 
     const countryFromUser = await req.body.countryOfOrigin
-    await Recipe.find({recipeType: countryFromUser})
+    await Recipe.find({countryOfOrigin: countryFromUser})
 
     res.redirect('/recipes')
   } catch (error) {
