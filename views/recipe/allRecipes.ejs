@@ -1,11 +1,11 @@
 <h2>All Recipes</h2>
-<a href="/recipes/oneRecipe">One Recipe</a>
-<a href="/recipes/randomRecipe">Random Recipe</a>
-<div style="display: grid; grid-template: auto / 1fr 1fr; gap: 10px">
+<a href="/recipes/recipe/randomRecipe">Random Recipe</a>
+
+<ul>
 <% allRecipes.forEach(recipe => { %>
  <li><a href="/recipes/<%- recipe._id %>"><%= recipe.title %></a></li>
- <img src="<%= recipe.image %>" alt="">
+ <li><img src="<%= recipe.image %>" alt=""></li>
 <% }) %>
-</div>
+</ul>
 
 

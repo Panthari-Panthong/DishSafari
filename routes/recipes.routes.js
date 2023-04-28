@@ -20,37 +20,27 @@ router.get("/", async (req, res, next) => {
 });
 
 //GET one recipe
-router.get("/recipes/:recipeId", async (req, res, next) => {
+router.get("/:recipeId", async (req, res, next) => {
   try {
     const onlyOneRecipe = await Recipe.findById(req.params.recipeId);
-    if (!onlyOneRecipe) {
-      res.redirect("/recipes");
-    } else {
       res.render("recipe/oneRecipe", { onlyOneRecipe });
-    }
-  } catch (error) {
+    } catch (error) {
     console.error(error);
   }
 });
 
 //GET random recipe
-router.get("/randomRecipe", async (req, res, next) => {
+router.get("/recipe/randomRecipe", async (req, res, next) => {
     try {
   const oneRandomRecipe = await Recipe.find();
   const randomRecipeLength = oneRandomRecipe.length;
   const randomRecipeIndex = Math.floor(Math.random() *randomRecipeLength)
-  console.log("RANDOM", randomRecipeIndex)
   const randomRecipe = oneRandomRecipe[randomRecipeIndex];
-  console.log("RANDOM", randomRecipe)
   res.render("recipe/randomRecipe", {randomRecipe});
   
 } catch (error) {
     console.error(error);
 } 
-});
-
-router.get("/oneRecipe", (req, res, next) => {
-  res.render("recipe/oneRecipe");
 });
 
 //GET random recipe

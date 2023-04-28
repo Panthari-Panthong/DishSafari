@@ -1,2 +1,19 @@
 <h2>One Recipe</h2>
 <a href="/recipes">All Recipes</a>
+
+<% if (onlyOneRecipe !== null) { %>
+    <ul>
+        <h1><%= onlyOneRecipe.title %></h1>
+        <img src="<%= onlyOneRecipe.image %>" alt="random recipe picture">
+        <p>Cooking Time: <%= onlyOneRecipe.cookingTime %> minuntes</p>
+        <p>Country: <%= onlyOneRecipe.countryOfOrigin %></p>
+        <p>Continent: <%= onlyOneRecipe.continent %></p>
+        <p>Cooking Level: <%= onlyOneRecipe.level %></p>
+        <p>Meal Type: <%= onlyOneRecipe.mealType %></p>
+        <p>Servings: <%= onlyOneRecipe.serves %></p>
+        <p>Ingredients: <%= onlyOneRecipe.ingredients %></p>
+        <p>Directions: <%= onlyOneRecipe.directions %></p>
+        <p>Recipe Type: <%= onlyOneRecipe.recipeType %></p>
+        <p>Created By: <%= onlyOneRecipe.createdBy %></p>
+    </ul>
+<% } %>
