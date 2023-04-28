@@ -1,1 +1,57 @@
+<a href="/user/profile">Back to profile!</a>
 <h1>CREATE Recipe</h1>
+
+<form action="/user/recipe/create" method="post">
+        <label for="title">Title : <input type="text" name="title" id="title"></label>
+        <br>
+        <label for="image">Image : <input type="text" name="image" id="image"></label>
+        <br>
+        <label for="cookingTime">Cooking Time : <input type="number" name="cookingTime" id="cookingTime"></label>
+        <br>
+        <label for="countryOfOrigin">Country Of Origin : <input type="text" name="countryOfOrigin"
+                        id="countryOfOrigin"></label>
+        <br>
+        <label for="continent">Continent : <select name="continent" id="continent">
+                        <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> {
+                                %>
+                                <option value="<%- element %>"><%- element %></option>
+                                <% }) %>
+                </select>
+        </label>
+        <br>
+        <label for="level">Level : <select name="level" id="level">
+                        <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
+                                <option value="<%- element %>"><%- element %></option>
+                                <% }) %>
+                </select>
+        </label>
+        <br>
+        <label for="mealType">Meal Type : <select name="mealType" id="mealType">
+                        <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
+                                <option value="<%- element %>"><%- element %></option>
+                                <% }) %>
+                </select>
+        </label>
+        <br>
+        <label for="serves">Serves : <input type="number" name="serves" id="serves"></label>
+
+        <br>
+        <label for="ingredients">Ingredients : <textarea name="ingredients" cols="30" rows="10"
+                        placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "></textarea></label>
+        <br>
+        <label for="directions">Directions :
+                <textarea name="directions" cols="50" rows="10" placeholder="Please start with 
+            Step 1. ... , 
+            Step 2. ..., 
+            etc."></textarea></label>
+        <br>
+        <label for="recipeType">Recipe Type : <select name="recipeType">
+                        <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
+                                <option value="<%- element %>"><%- element %></option>
+                                <% }) %>
+                </select>
+        </label>
+        <br>
+        <button type="submit">Create Recipe</button>
+
+</form>
