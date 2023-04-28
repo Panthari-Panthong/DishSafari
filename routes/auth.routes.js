@@ -83,7 +83,6 @@ router.get("/login", isLoggedOut, (req, res) => {
 // POST login route ==> to process form data
 router.post("/login", isLoggedOut, async (req, res, next) => {
   try {
-    console.log("SESSION =====> ", req.session);
     // Find username in DB
     const user = await User.findOne({ username: req.body.username });
 
@@ -97,7 +96,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       if (bcryptjs.compareSync(req.body.password, user.password)) {
         //******* SAVE THE USER IN THE SESSION ********//
         req.session.currentUser = user;
-        res.redirect("/profile");
+        res.redirect("/user/profile");
         // If password is wrong
         // Send back to login page
       } else {
