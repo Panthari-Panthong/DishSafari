@@ -87,12 +87,24 @@ router.post("/recipe/create", isLoggedIn, async (req, res, next) => {
 // Get one recipe
 router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
   try {
-    //Filter recipe by ID
+    // console.log("ID", req.params.recipeID);
+    const recipe = await Recipe.findById(req.params.recipeID);
+
+    res.render("user/recipe", { recipe });
+  } catch (error) {
+    next("ERROR", error);
+  }
+});
+
+// Edit||Update recipe
+router.get("/recipe/:recipeID/edit", async (req, res, next) => {
+  try {
+    console.log("ID", req.params.recipeID);
     const recipe = await Recipe.findById(req.params.recipeID);
 
     res.render("user/editRecipe", { recipe });
   } catch (error) {
-    next("ERROR", error);
+    next(error);
   }
 });
 
