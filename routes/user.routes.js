@@ -99,7 +99,54 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
 //  Edit||Update recipe
 router.post("/recipe/:recipeID/edit", isLoggedIn, async (req, res, next) => {
   try {
-    // console.log("ID", req.params);
+    // ---------- Start Ingredients -------------------
+    // Separator ingredients by (comma) , to an array
+    // Before adding in DB
+    const ingredients = req.body.ingredients;
+    const splitIngredients = ingredients.split(",");
+
+    // Removes whitespace from both ends of a string
+    const newArringredient = splitIngredients.map((element) => {
+      return element.trim();
+    });
+
+    // ---------- End Ingredients -------------------
+
+    // ---------- Start Directions -------------------
+    //Separator Direction by "Step" word to an array
+    const directions = req.body.directions;
+    const splitDirections = directions.split("Step");
+
+    // Removes whitespace from both ends of a string
+    const removesWhitespace = splitDirections.map((element) => {
+      return element.trim();
+    });
+
+    //Remove empty string in the direction array
+    const newArrDirection = removesWhitespace.filter((str) => {
+      return str !== "";
+    });
+    // ---------- End Directions -------------------
+
+    // -------- Update a recipe to DB --------------
+    const updateRecipe = {
+      title: req.body.title,
+      image: req.body.image,
+      cookingTime: req.body.cookingTime,
+      countryOfOrigin: req.body.countryOfOrigin,
+      continent: req.body.continent,
+      mealType: req.body.mealType,
+      serves: req.body.serves,
+      ingredients: newArringredient,
+      directions: newArrDirection,
+      recipeType: req.body.recipeType,
+      createdBy: req.session.currentUser,
+    };
+
+    await Recipe.findByIdAndUpdate(req.params.recipeID, updateRecipe, {
+      new: true,
+    });
+
     res.redirect("/user/profile");
   } catch (error) {
     next("ERROR", error);
