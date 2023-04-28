@@ -1,11 +1,23 @@
 const express = require("express");
 const router = express.Router();
+const Recipe = require("../models/Recipe.model");
+
+// require auth middleware
+const { isLoggedIn } = require("../middleware/route-guard");
 
 // Profile
 // GET route ==> to display the profile form to users
-router.get("/profile", async (req, res, next) => {
+router.get("/profile", isLoggedIn, async (req, res, next) => {
   try {
-    res.render("user/profile", { userInSession: req.session.currentUser });
+    // Find the recipes that user created
+    const allRecipes = await Recipe.find({
+      createdBy: req.session.currentUser,
+    });
+
+    res.render("user/profile", {
+      userInSession: req.session.currentUser,
+      allRecipes,
+    });
   } catch (error) {
     next(error);
   }
@@ -13,12 +25,12 @@ router.get("/profile", async (req, res, next) => {
 
 // Create Recipe
 // GET route ==> to display the create form to user
-router.get("/create", (req, res, next) => {
+router.get("/recipe/create", isLoggedIn, async (req, res, next) => {
   res.render("user/createRecipe", { userInSession: req.session.currentUser });
 });
 
 // POST create route ==> to process form data
-router.post("/create", (req, res, next) => {
+router.post("/recipe/create", isLoggedIn, async (req, res, next) => {
   try {
     // ---------- Start Ingredients -------------------
     // Separator ingredients by (comma) , to an array
@@ -27,11 +39,11 @@ router.post("/create", (req, res, next) => {
     const splitIngredients = ingredients.split(",");
 
     // Removes whitespace from both ends of a string
-    const ingredient = splitIngredients.map((element) => {
+    const newArringredient = splitIngredients.map((element) => {
       return element.trim();
     });
 
-    // ---------- Start Ingredients -------------------
+    // ---------- End Ingredients -------------------
 
     // ---------- Start Directions -------------------
     //Separator Direction by "Step" word to an array
@@ -44,13 +56,62 @@ router.post("/create", (req, res, next) => {
     });
 
     //Remove empty string in the direction array
-    const direction = removesWhitespace.filter((str) => {
+    const newArrDirection = removesWhitespace.filter((str) => {
       return str !== "";
     });
     // ---------- End Directions -------------------
 
-    console.log("Name : ", req.session.currentUser.username);
-    // console.log("BODY", req.body);
+    // -------- Create a recipe to DB --------------
+    const newRecipe = {
+      title: req.body.title,
+      image: req.body.image,
+      cookingTime: req.body.cookingTime,
+      countryOfOrigin: req.body.countryOfOrigin,
+      continent: req.body.continent,
+      mealType: req.body.mealType,
+      serves: req.body.serves,
+      ingredients: newArringredient,
+      directions: newArrDirection,
+      recipeType: req.body.recipeType,
+      createdBy: req.session.currentUser,
+    };
+
+    await Recipe.create(newRecipe);
+
+    res.redirect("/user/profile");
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Get one recipe
+router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
+  try {
+    //Filter recipe by ID
+    const recipe = await Recipe.findById(req.params.recipeID);
+
+    res.render("user/editRecipe", { recipe });
+  } catch (error) {
+    next("ERROR", error);
+  }
+});
+
+//  Edit||Update recipe
+router.post("/recipe/:recipeID/edit", isLoggedIn, async (req, res, next) => {
+  try {
+    // console.log("ID", req.params);
+    res.redirect("/user/profile");
+  } catch (error) {
+    next("ERROR", error);
+  }
+});
+
+//Delete recipe
+router.post("/recipe/:recipeID/delete", isLoggedIn, async (req, res, next) => {
+  try {
+    //Find with ID and delete
+    await Recipe.findByIdAndRemove(req.params.recipeID);
+    res.redirect("/user/profile");
   } catch (error) {
     next(error);
   }

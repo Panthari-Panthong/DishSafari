@@ -7,9 +7,21 @@
 <% if(userInSession) { %>
     <h1>Welcome <%= userInSession.username %>! </h1>
     <p>This is all your Recipes!</p>
-    <% } else { %>
-        <br>
-        <p>Still no logged in user, sorry!</p>
-        <% } %>
+    <% allRecipes.forEach(recipe=> { %>
+        <div>
+            <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+            <a href="/user/recipe/<%= recipe._id %>">
+                <h3>
+                    <%= recipe.title %>
+                </h3>
+            </a>
+        </div>
 
-            <a href="/create">Create Recipe!</a>
+        <% }) %>
+            </ul>
+            <% } else { %>
+                <br>
+                <p>Still no logged in user, sorry!</p>
+                <% } %>
+
+                    <a href="/user/recipe/create">Create Recipe!</a>
