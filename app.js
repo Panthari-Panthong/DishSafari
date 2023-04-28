@@ -34,6 +34,7 @@ app.use("/", authRoute);
 const userRoute = require("./routes/user.routes");
 app.use("/", userRoute);
 
+// Recipe route (allRecipes, oneRecipe, randomRecipe)
 const recipeRoutes = require('./routes/recipes.routes')
 app.use('/recipes', recipeRoutes)
 
