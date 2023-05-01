@@ -3,15 +3,12 @@ const router = express.Router();
 
 const Recipe = require("../models/Recipe.model");
 
-const data = require("../data.json");
+// Extra Reviews part
+const Review = require("../models/Review.model");
 
 //GET all the recipes
 router.get("/", async (req, res, next) => {
   try {
-    // await Recipe.deleteMany();
-
-    // await Recipe.insertMany(data);
-
     const allRecipes = await Recipe.find();
     res.render("recipe/allRecipes", { allRecipes });
   } catch (error) {
@@ -23,7 +20,17 @@ router.get("/", async (req, res, next) => {
 router.get("/:recipeId", async (req, res, next) => {
   try {
     const onlyOneRecipe = await Recipe.findById(req.params.recipeId);
-    res.render("recipe/oneRecipe", { onlyOneRecipe });
+
+    // ----------  Extra Reviews part
+    const reviews = await Review.find({ recipe: req.params.recipeId }).populate(
+      "recipe"
+    );
+
+    res.render("recipe/oneRecipe", {
+      onlyOneRecipe,
+      reviews,
+      recipeId: req.params.recipeId,
+    });
   } catch (error) {
     console.error(error);
   }
