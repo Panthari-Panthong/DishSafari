@@ -3,7 +3,17 @@
 </h1>
 <p>Welcome Ironhacker!</p>
 
-<a href="/signup">Sign up</a>
-<a href="/login">Log in</a>
-<a href="/recipes">Recipes</a>
 
+
+<% if(!userInSession){ %>
+    <a href="/signup">Sign up</a>
+    <a href="/login">Log in</a>
+    <% } else { %>
+
+        <form id="logout-form" action="/logout" method="POST">
+            <button>Logout</button>
+        </form>
+        <a href="/user/profile">Profile</a>
+        <% } %>
+
+            <a href="/recipes">Recipes</a>

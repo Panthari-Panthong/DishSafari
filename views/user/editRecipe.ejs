@@ -3,10 +3,13 @@
 
 <h1>EDIT RECIPE</h1>
 
-<form action="/user/recipe/<%- recipe._id %>/edit" method="post">
+<form action="/user/recipe/<%- recipe._id %>/edit" method="post" enctype="multipart/form-data">
         <label for="title">Title : <input type="text" name="title" value="<%= recipe.title %>"></label>
         <br>
-        <label for="image">Image : <input type="text" name="image" value="<%= recipe.image %>"></label>
+        <label for="image">Image :
+                <input type="file" name="image">
+                <input type="text" name="existingImage" hidden value="<%= recipe.image %>">
+        </label>
         <br>
         <label for="cookingTime">Cooking Time : <input type="number" name="cookingTime"
                         value="<%= recipe.cookingTime %>"></label>
