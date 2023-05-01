@@ -6,24 +6,44 @@
 </form>
 
 
+<form action="/user/recipe/search" method="post" autocomplete="off">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+<a href="/user/profile">Clear!</a>
+
+
 <% if(userInSession) { %>
     <h1>Welcome <%= userInSession.username %>! </h1>
     <p>This is all your Recipes!</p>
-    <% allRecipes.forEach(recipe=> { %>
-        <div>
-            <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
-            <a href="/user/recipe/<%= recipe._id %>">
-                <h3>
-                    <%= recipe.title %>
-                </h3>
-            </a>
-        </div>
+    <% if (!isQuery) { %>
+        <% allRecipes.forEach(recipe=> { %>
+            <div>
+                <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+                <a href="/user/recipe/<%= recipe._id %>">
+                    <h3>
+                        <%= recipe.title %>
+                    </h3>
+                </a>
+            </div>
+            <% }) %>
 
-        <% }) %>
-            </ul>
-            <% } else { %>
-                <br>
-                <p>Still no logged in user, sorry!</p>
-                <% } %>
+                <% } else { %>
+                    <% queryRecipe.forEach(recipe=> { %>
+                        <div>
+                            <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+                            <a href="/user/recipe/<%= recipe._id %>">
+                                <h3>
+                                    <%= recipe.title %>
+                                </h3>
+                            </a>
+                        </div>
+                        <% }) %>
+                            <% } %>
 
-                    <a href="/user/recipe/create">Create Recipe!</a>
+                                <% } else { %>
+                                    <br>
+                                    <p>Still no logged in user, sorry!</p>
+                                    <% } %>
+
+                                        <a href="/user/recipe/create">Create Recipe!</a>
