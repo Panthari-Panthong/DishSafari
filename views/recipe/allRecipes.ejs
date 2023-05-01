@@ -3,36 +3,40 @@
 
 <div id="filter">
     <h3>Filter Recipes</h3>
-<form action="/recipes/filter" method="POST">
-    <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label>
+<form action="/filter-recipes" method="GET">
+    <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
     <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
-        <option value="meat">Meat</option>
-        <option value="fish">Fish</option>
-        <option value="vegetarian" selected>Vegetarian</option>
-        <option value="vegan">Vegan</option>
+        <option value="pleaseSelect">Please Select</option>
+        <option value="Meat">Meat</option>
+        <option value="Fish">Fish</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Vegan">Vegan</option>
     </select></label>
     <label for="mealType">Meal Type: <select name="mealType" id="mealType">
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner" selected>Dinner</option>
-        <option value="snack">Snack</option>
-        <option value="dessert">Dessert</option>
+        <option value="pleaseSelect">Please Select</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Dinner">Dinner</option>
+        <option value="Snack">Snack</option>
+        <option value="Dessert">Dessert</option>
     </select></label>
     <label for="level">Level: <select name="level" id="level">
+        <option value="pleaseSelect">Please Select</option>
         <option value="Novice">Novice</option>
-        <option value="Intermediate" selected>Intermediate</option>
-        <option value="advanced">Advanced</option>
-        <option value="expert">Expert</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+        <option value="Expert">Expert</option>
     </select></label>
     <label for="continent">Continent: <select name="continent" id="continent">
+        <option value="pleaseSelect">Please Select</option>
         <option value="Asia">Asia</option>
         <option value="Africa">Africa</option>
-        <option value="Australia" selected>Australia</option>
-        <option value="europe">Europe</option>
-        <option value="northAmerica">North America</option>
-        <option value="southAmerica">South America</option>
+        <option value="Australia">Australia</option>
+        <option value="Europe">Europe</option>
+        <option value="NorthAmerica">North America</option>
+        <option value="SouthAmerica">South America</option>
     </select></label>
-    <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label>
+    <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
     <button type="submit">Filter</button>
   </form>
 </div>

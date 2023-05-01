@@ -43,8 +43,9 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
 } 
 });
 
-//POST filter recipes
-router.post('/recipes/filter', async (req, res) => {
+
+//GET filter recipes
+/* router.get('/filter-recipes', async (req, res) => {
     try {
     const titleFromUser = await req.body.title
     await Recipe.find({title: titleFromUser})
@@ -69,6 +70,42 @@ router.post('/recipes/filter', async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+}) */
+router.get('/filter-recipes', async (req, res) => {
+
+  try {
+    const recipeTypeFromUser = req.query.recipeType;
+    const mealTypeFromUser = req.query.mealType;
+    const levelFromUser = req.query.level;
+    const continentFromUser = req.query.continent;
+
+/*   const filteredRecipes = await Recipe.find({$or: [
+    {
+      recipeType: recipeTypeFromUser
+    },
+    {
+      mealType: mealTypeFromUser
+    },
+    {
+      level: levelFromUser
+    },
+    {
+      continent: continentFromUser
+    },
+  ]}); */
+
+  const filteredRecipes = await Recipe.find({
+    recipeType: { $in: [recipeTypeFromUser] },
+    mealType: { $in: [mealTypeFromUser] },
+    level: {$in: [levelFromUser]},
+    continent: {$in: [continentFromUser]}
+
+  });
+  res.render("recipe/allRecipes", { filteredRecipes });
+} catch (error) {
+  console.error(error);
+}
 })
+
 
 module.exports = router;
