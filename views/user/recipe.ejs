@@ -6,7 +6,7 @@
     <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 400px;">
     <h1> Title : <%= recipe.title %>
     </h1>
-    <p> Cooking Time : <%= recipe.cookingTime %>
+    <p> Cooking Time : <%= recipe.cookingTime %> minutes
     </p>
     <p> Country Of Origin : <%= recipe.countryOfOrigin %>
     </p>
@@ -26,15 +26,14 @@
     </ul>
     <h3>Directions : </h3>
     <ul>
-        <% recipe.directions.forEach(direction=> { %>
-            <% console.log(direction) %>
-                <li>
-                    <%= direction %>
-                </li>
-                <% }) %>
+        <% recipe.directions.map(direction=> { %>
+            <li>
+                <%= direction %>
+            </li>
+            <% }) %>
     </ul>
 
-
+    <a href="/user/recipe/<%- recipe._id %>/edit">Edit</a>
 
     <form action="/user/recipe/<%- recipe._id %>/delete" method="post">
         <button type="submit">Delete</button>

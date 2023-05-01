@@ -1,10 +1,10 @@
 <a href="/user/profile">Back to profile!</a>
 <h1>CREATE Recipe</h1>
 
-<form action="/user/recipe/create" method="post">
+<form action="/user/recipe/create" method="post" autocomplete="off" enctype="multipart/form-data">
         <label for="title">Title : <input type="text" name="title" id="title"></label>
         <br>
-        <label for="image">Image : <input type="text" name="image" id="image"></label>
+        <label for="image">Image : <input type="file" name="image" id="image"></label>
         <br>
         <label for="cookingTime">Cooking Time : <input type="number" name="cookingTime" id="cookingTime"></label>
         <br>
