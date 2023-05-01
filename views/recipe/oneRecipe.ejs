@@ -1,18 +1,31 @@
 <a href="/recipes">All Recipes</a>
 
-<% if (onlyOneRecipe !== null) { %>
+<% if (onlyOneRecipe !==null) { %>
     <ul>
+
         <h1><%= onlyOneRecipe.title %></h1>
         <img src="<%= onlyOneRecipe.image %>" alt="random recipe picture" height="400px">
         <p>Cooking Time: <%= onlyOneRecipe.cookingTime %> minuntes</p>
-        <p>Country: <%= onlyOneRecipe.countryOfOrigin %></p>
-        <p>Continent: <%= onlyOneRecipe.continent %></p>
-        <p>Cooking Level: <%= onlyOneRecipe.level %></p>
-        <p>Meal Type: <%= onlyOneRecipe.mealType %></p>
-        <p>Servings: <%= onlyOneRecipe.serves %></p>
-        <p>Ingredients: <%= onlyOneRecipe.ingredients %></p>
-        <p>Directions: <%= onlyOneRecipe.directions %></p>
-        <p>Recipe Type: <%= onlyOneRecipe.recipeType %></p>
-        <p>Created By: <%= onlyOneRecipe.createdBy %></p>
+        <p>Country: <%= onlyOneRecipe.countryOfOrigin %>
+        </p>
+        <p>Continent: <%= onlyOneRecipe.continent %>
+        </p>
+        <p>Cooking Level: <%= onlyOneRecipe.level %>
+        </p>
+        <p>Meal Type: <%= onlyOneRecipe.mealType %>
+        </p>
+        <p>Servings: <%= onlyOneRecipe.serves %>
+        </p>
+        <p>Ingredients: <%= onlyOneRecipe.ingredients %>
+        </p>
+        <p>Directions: <%= onlyOneRecipe.directions %>
+        </p>
+        <p>Recipe Type: <%= onlyOneRecipe.recipeType %>
+        </p>
+        <p>Created By: <%= onlyOneRecipe.createdBy %>
+        </p>
     </ul>
-<% } %>
+    <% } %>
+
+        <%- include('partials/reviews.ejs', {reviews : reviews}) %>
+            <%- include('partials/reviewForm.ejs') %>
