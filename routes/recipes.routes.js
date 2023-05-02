@@ -49,7 +49,6 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
   }
 });
 
-
 //GET filter recipes
 /* router.get('/filter-recipes', async (req, res) => {
     try {
@@ -77,15 +76,14 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
     console.error(error);
   }
 }) */
-router.get('/filter-recipes', async (req, res) => {
-
+router.get("/filter-recipes", async (req, res) => {
   try {
     const recipeTypeFromUser = req.query.recipeType;
     const mealTypeFromUser = req.query.mealType;
     const levelFromUser = req.query.level;
     const continentFromUser = req.query.continent;
 
-/*   const filteredRecipes = await Recipe.find({$or: [
+    /*   const filteredRecipes = await Recipe.find({$or: [
     {
       recipeType: recipeTypeFromUser
     },
@@ -100,18 +98,16 @@ router.get('/filter-recipes', async (req, res) => {
     },
   ]}); */
 
-  const filteredRecipes = await Recipe.find({
-    recipeType: { $in: [recipeTypeFromUser] },
-    mealType: { $in: [mealTypeFromUser] },
-    level: {$in: [levelFromUser]},
-    continent: {$in: [continentFromUser]}
-
-  });
-  res.render("recipe/allRecipes", { filteredRecipes });
-} catch (error) {
-  console.error(error);
-}
-})
-
+    const filteredRecipes = await Recipe.find({
+      recipeType: { $in: [recipeTypeFromUser] },
+      mealType: { $in: [mealTypeFromUser] },
+      level: { $in: [levelFromUser] },
+      continent: { $in: [continentFromUser] },
+    });
+    res.render("recipe/allRecipes", { filteredRecipes });
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;
