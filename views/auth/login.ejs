@@ -1,16 +1,23 @@
-<a href="/">Home</a>
-
+<!-- <a href="/">Home</a> -->
+<div class="login">
 <h2>Login</h2>
-
+</div>
+<br>
+<div class="login-form">
 <form action="/login" method="POST">
     <label> Username :
-        <input type="text" name="username" required />
+        <input class="input" type="text" name="username" required />
     </label>
+    <br>
     <label>Password :
-        <input type="password" name="password" required />
+        <input class="input" type="password" name="password" required />
     </label>
-    <button type="submit">Login</button>
+    <br>
+    <div id="login-btn">
+    <button class="login-btn" type="submit">Login</button>
+</div>
 </form>
+</div>
 
 <% if (typeof errorMessage !=='undefined' ) { %>
     <p style="color: red">
