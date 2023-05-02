@@ -50,8 +50,8 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
 });
 
 
-//POST filter recipes
 
+//POST filter recipes
 router.post('/recipe/filter', async (req, res) => {
 
   try {
@@ -80,5 +80,6 @@ router.post('/recipe/filter', async (req, res) => {
     console.error(error);
   }
 })
+
 
 module.exports = router;
