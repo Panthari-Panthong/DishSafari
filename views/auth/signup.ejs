@@ -1,15 +1,23 @@
-<a href="/">Home</a>
-<h1>Sign up</h1>
+<!-- <a href="/">Home</a> -->
+<div class="signup">
+<h2>Sign up</h2>
+</div>
+<br>
+<div class="signup-form">
 <form action="/signup" method="POST">
-    <label>Username:
-        <input name="username" required
+    <label>Username :
+        <input class="input" name="username" required
             value="<% if (typeof errorMessage !== 'undefined') { %><%= username %><% } %>" />
     </label>
+<br>
 
-
-    <label>Password: <input type="password" name="password" required /></label>
-    <button type="submit">SignUp</button>
+    <label>Password : <input class="input" type="password" name="password" required /></label>
+    <br>
+    <div id="signup-btn">
+    <button class="signup-btn" type="submit">Sign Up</button>
+</div>
 </form>
+</div>
 
 <% if (typeof errorMessage !=='undefined' ) { %>
     <p style="color: red">

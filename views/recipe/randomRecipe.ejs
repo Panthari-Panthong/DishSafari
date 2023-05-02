@@ -1,16 +1,23 @@
-<h2>Random Recipe</h2>
 <a href="/recipes">All Recipes</a>
-<ul>
-    <h1><%= randomRecipe.title %></h1>
-    <img src="<%= randomRecipe.image %>" alt="random recipe picture" height="400px">
-    <p>Cooking Time: <%= randomRecipe.cookingTime %> minuntes</p>
-    <p>Country: <%= randomRecipe.countryOfOrigin %></p>
-    <p>Continent: <%= randomRecipe.continent %></p>
-    <p>Cooking Level: <%= randomRecipe.level %></p>
-    <p>Meal Type: <%= randomRecipe.mealType %></p>
-    <p>Servings: <%= randomRecipe.serves %></p>
-    <p>Ingredients: <%= randomRecipe.ingredients %></p>
-    <p>Directions: <%= randomRecipe.directions %></p>
-    <p>Recipe Type: <%= randomRecipe.recipeType %></p>
+<h1><%= randomRecipe.title %></h1>
+    <img src="<%= randomRecipe.image %>" alt="random recipe picture" style="width:400px">
     <p>Created By: <%= randomRecipe.createdBy %></p>
-</ul>
+    <p>Cooking Time : <%= randomRecipe.cookingTime %> minuntes</p>
+    <p>Country of Origin : <%= randomRecipe.countryOfOrigin %></p>
+    <p>Continent : <%= randomRecipe.continent %></p>
+    <p>Recipe Type : <%= randomRecipe.recipeType %></p>
+    <p>Cooking Level : <%= randomRecipe.level %></p>
+    <p>Meal Type : <%= randomRecipe.mealType %></p>
+    <p>Serves : <%= randomRecipe.serves %></p>
+    <h3>Ingredients : </h3>
+<ul>
+    <% randomRecipe.ingredients.forEach(ingredient => { %>
+        <li><%= ingredient %></li>
+        <% }) %>
+    </ul>
+    <h3>Directions : </h3>
+    <ul><% randomRecipe.directions.map(direction => { %> 
+        <li><%= direction %></li>
+    <% }) %>
+    </ul>
+

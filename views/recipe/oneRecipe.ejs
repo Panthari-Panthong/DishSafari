@@ -1,31 +1,32 @@
 <a href="/recipes">All Recipes</a>
-
 <% if (onlyOneRecipe !==null) { %>
-    <ul>
+<h1><%= onlyOneRecipe.title %></h1>
+<img
+  src="<%= onlyOneRecipe.image %>"
+  alt="<%= onlyOneRecipe.title %>"
+  style="width: 400px"
+/>
+<p>Created By : <%= onlyOneRecipe.createdBy %></p>
+<p>Cooking Time : <%= onlyOneRecipe.cookingTime %> minuntes</p>
+<p>Country of Origin : <%= onlyOneRecipe.countryOfOrigin %></p>
+<p>Continent : <%= onlyOneRecipe.continent %></p>
+<p>Recipe Type : <%= onlyOneRecipe.recipeType %></p>
+<p>Cooking Level : <%= onlyOneRecipe.level %></p>
+<p>Meal Type : <%= onlyOneRecipe.mealType %></p>
+<p>Serves : <%= onlyOneRecipe.serves %></p>
+<h3>Ingredients : </h3>
+<ul>
+  <% onlyOneRecipe.ingredients.forEach(ingredient => { %>
+  <li><%= ingredient %></li>
+  <% }) %>
+</ul>
+<h3>Directions : </h3>
+<ul>
+  <% onlyOneRecipe.directions.map(direction => { %>
+  <li><%= direction %></li>
+  <% }) %>
+</ul>
 
-        <h1><%= onlyOneRecipe.title %></h1>
-        <img src="<%= onlyOneRecipe.image %>" alt="random recipe picture" height="400px">
-        <p>Cooking Time: <%= onlyOneRecipe.cookingTime %> minuntes</p>
-        <p>Country: <%= onlyOneRecipe.countryOfOrigin %>
-        </p>
-        <p>Continent: <%= onlyOneRecipe.continent %>
-        </p>
-        <p>Cooking Level: <%= onlyOneRecipe.level %>
-        </p>
-        <p>Meal Type: <%= onlyOneRecipe.mealType %>
-        </p>
-        <p>Servings: <%= onlyOneRecipe.serves %>
-        </p>
-        <p>Ingredients: <%= onlyOneRecipe.ingredients %>
-        </p>
-        <p>Directions: <%= onlyOneRecipe.directions %>
-        </p>
-        <p>Recipe Type: <%= onlyOneRecipe.recipeType %>
-        </p>
-        <p>Created By: <%= onlyOneRecipe.createdBy %>
-        </p>
-    </ul>
-    <% } %>
 
-        <%- include('partials/reviews.ejs', {reviews : reviews}) %>
-            <%- include('partials/reviewForm.ejs') %>
+<% } %> <%- include('partials/reviews.ejs', {reviews : reviews}) %> <%-
+include('partials/reviewForm.ejs') %>
