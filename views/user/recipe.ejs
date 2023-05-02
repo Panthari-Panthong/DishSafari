@@ -27,7 +27,23 @@
 
   <a href="/user/recipe/<%- recipe._id %>/edit">Edit</a>
 
-  <form action="/user/recipe/<%- recipe._id %>/delete" method="post">
-    <button type="submit">Delete</button>
-  </form>
+
+    <form action="/user/recipe/<%- recipe._id %>/delete" method="post" id="myForm">
+        <button onclick="confirmDelete()">Delete</button>
+    </form>
 </div>
+
+<% if (alertMessage) { %>
+    <script>
+        alert("<%= alertMessage %>");
+    </script>
+    <% } %>
+
+        <script>
+            function confirmDelete() {
+                if (confirm("Are you sure you want to delete?")) {
+                    document.getElementById("myForm").submit();
+                }
+            }
+        </script>
+

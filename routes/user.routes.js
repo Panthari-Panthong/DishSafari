@@ -126,8 +126,9 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
   try {
     // console.log("ID", req.params.recipeID);
     const recipe = await Recipe.findById(req.params.recipeID);
-
-    res.render("user/recipe", { recipe });
+    // Alert
+    const alertMessage = res.locals.alertMessage;
+    res.render("user/recipe", { recipe, alertMessage });
   } catch (error) {
     next("ERROR", error);
   }
@@ -136,10 +137,15 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
 // Edit||Update recipe
 router.get("/recipe/:recipeID/edit", async (req, res, next) => {
   try {
-    console.log("ID", req.params.recipeID);
     const recipe = await Recipe.findById(req.params.recipeID);
 
-    res.render("user/editRecipe", { recipe });
+    const directions = recipe.directions.map(
+      (direction) => "Step " + direction
+    );
+
+    const alertMessage = res.locals.alertMessage;
+
+    res.render("user/editRecipe", { recipe, directions, alertMessage });
   } catch (error) {
     next(error);
   }
@@ -179,6 +185,11 @@ router.post(
       const newArrDirection = removesWhitespace.filter((str) => {
         return str !== "";
       });
+
+      // remove the last comma from a string
+      const newDirection = newArrDirection.map((direction) => {
+        return direction.replace(/,*$/, "");
+      });
       // ---------- End Directions -------------------
 
       // -------- Update a recipe to DB --------------
@@ -211,7 +222,7 @@ router.post(
           mealType,
           serves,
           ingredients: newArringredient,
-          directions: newArrDirection,
+          directions: newDirection,
           recipeType,
           createdBy: req.session.currentUser,
         },
@@ -231,6 +242,7 @@ router.post(
 router.post("/recipe/:recipeID/delete", isLoggedIn, async (req, res, next) => {
   try {
     //Find with ID and delete
+    res.locals.alertMessage = "Data deleted successfully!";
     await Recipe.findByIdAndRemove(req.params.recipeID);
     res.redirect("/user/profile");
   } catch (error) {

@@ -3,65 +3,66 @@
 
 <div id="filter">
     <h3>Filter Recipes</h3>
-<form action="/recipes/recipe/filter" method="POST">
-    <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
-    <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
-        <option value="pleaseSelect">Please Select</option>
-        <option value="Meat">Meat</option>
-        <option value="Fish">Fish</option>
-        <option value="Vegetarian">Vegetarian</option>
-        <option value="Vegan">Vegan</option>
-    </select></label>
-    <label for="mealType">Meal Type: <select name="mealType" id="mealType">
-        <option value="pleaseSelect">Please Select</option>
-        <option value="Breakfast">Breakfast</option>
-        <option value="Lunch">Lunch</option>
-        <option value="Dinner">Dinner</option>
-        <option value="Snack">Snack</option>
-        <option value="Dessert">Dessert</option>
-    </select></label>
-    <label for="level">Level: <select name="level" id="level">
-        <option value="pleaseSelect">Please Select</option>
-        <option value="Novice">Novice</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-        <option value="Expert">Expert</option>
-    </select></label>
-    <label for="continent">Continent: <select name="continent" id="continent">
-        <option value="pleaseSelect">Please Select</option>
-        <option value="Asia">Asia</option>
-        <option value="Africa">Africa</option>
-        <option value="Australia">Australia</option>
-        <option value="Europe">Europe</option>
-        <option value="NorthAmerica">North America</option>
-        <option value="SouthAmerica">South America</option>
-    </select></label>
-    <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
-    <button type="submit">Filter</button>
-  </form>
+    <form action="/recipes/recipe/filter" method="POST">
+        <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
+        <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
+                <option value="pleaseSelect">Please Select</option>
+                <option value="Meat">Meat</option>
+                <option value="Fish">Fish</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+            </select></label>
+        <label for="mealType">Meal Type: <select name="mealType" id="mealType">
+                <option value="pleaseSelect">Please Select</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+                <option value="Dessert">Dessert</option>
+            </select></label>
+        <label for="level">Level: <select name="level" id="level">
+                <option value="pleaseSelect">Please Select</option>
+                <option value="Novice">Novice</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Expert">Expert</option>
+            </select></label>
+        <label for="continent">Continent: <select name="continent" id="continent">
+                <option value="pleaseSelect">Please Select</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="Australia">Australia</option>
+                <option value="Europe">Europe</option>
+                <option value="NorthAmerica">North America</option>
+                <option value="SouthAmerica">South America</option>
+            </select></label>
+        <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
+        <button type="submit">Filter</button>
+    </form>
+    <a href="/recipes">Clear!</a>
 </div>
-  
-<% if (!isQuery) { %>
-    <% allRecipes.forEach(recipe => { %>
-        <div>
-        <img src="<%= recipe.image %>" alt="" width="300px"/>
-      <a href="/recipes/<%- recipe._id %>">
-        <h3>
-            <%= recipe.title %>
-        </h3>
-    </a>
-    </div>
-      <% }) %>
 
-  <% } else { %>
-    <% filteredRecipes.forEach(recipe => { %>
+<% if (!isQuery) { %>
+    <% allRecipes.forEach(recipe=> { %>
         <div>
-            <img src="<%= recipe.image %>" alt="" width="300px"/>
-          <a href="/recipes/<%- recipe._id %>">
-            <h3>
-                <%= recipe.title %>
-            </h3>
-        </a>
+            <img src="<%= recipe.image %>" alt="" width="300px" />
+            <a href="/recipes/<%- recipe._id %>">
+                <h3>
+                    <%= recipe.title %>
+                </h3>
+            </a>
         </div>
-    <% }) %>
-    <% } %>
+        <% }) %>
+
+            <% } else { %>
+                <% filteredRecipes.forEach(recipe=> { %>
+                    <div>
+                        <img src="<%= recipe.image %>" alt="" width="300px" />
+                        <a href="/recipes/<%- recipe._id %>">
+                            <h3>
+                                <%= recipe.title %>
+                            </h3>
+                        </a>
+                    </div>
+                    <% }) %>
+                        <% } %>

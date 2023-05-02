@@ -10,7 +10,7 @@ const Review = require("../models/Review.model");
 router.get("/", async (req, res, next) => {
   try {
     const allRecipes = await Recipe.find();
-    res.render("recipe/allRecipes", { allRecipes, isQuery: false, });
+    res.render("recipe/allRecipes", { allRecipes, isQuery: false });
   } catch (error) {
     console.error(error);
   }
@@ -49,36 +49,33 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
   }
 });
 
-
 //POST filter recipes
-
-router.post('/recipe/filter', async (req, res) => {
-
+router.post("/recipe/filter", async (req, res) => {
   try {
     const filters = {};
 
-    if (req.body.recipeType !== 'pleaseSelect') {
+    if (req.body.recipeType !== "pleaseSelect") {
       filters.recipeType = req.body.recipeType;
     }
 
-    if (req.body.mealType !== 'pleaseSelect') {
+    if (req.body.mealType !== "pleaseSelect") {
       filters.mealType = req.body.mealType;
     }
 
-    if (req.body.level !== 'pleaseSelect') {
+    if (req.body.level !== "pleaseSelect") {
       filters.level = req.body.level;
     }
 
-    if (req.body.continent !== 'pleaseSelect') {
+    if (req.body.continent !== "pleaseSelect") {
       filters.continent = req.body.continent;
     }
 
     const filteredRecipes = await Recipe.find(filters);
-    console.log(filteredRecipes);
-    res.render('recipe/allRecipes', { filteredRecipes, isQuery: true });
+    // console.log(filteredRecipes);
+    res.render("recipe/allRecipes", { filteredRecipes, isQuery: true });
   } catch (error) {
     console.error(error);
   }
-})
+});
 
 module.exports = router;
