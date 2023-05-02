@@ -36,14 +36,14 @@
         <label for="serves">Serves : <input type="number" name="serves" id="serves"></label>
 
         <br>
-        <label for="ingredients">Ingredients : <textarea name="ingredients" cols="30" rows="10"
-                        placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "></textarea></label>
+        <label for="ingredients">Ingredients : <textarea name="ingredients" cols="100" rows="10"
+                        placeholder="Please separate the different ingredients by using a comma(,) eg. ½ cup unsalted butter, 1 cup all-purpose flour, 2 cups sugar, etc... "></textarea></label>
         <br>
         <label for="directions">Directions :
-                <textarea name="directions" cols="50" rows="10" placeholder="Please start with 
-            Step 1. ... , 
-            Step 2. ..., 
-            etc."></textarea></label>
+                <textarea name="directions" cols="100" rows="10" placeholder="Please seperate the different directions by using the word Step followed my the number order of the direction, eg. 
+        Step 1. Melt butter in a 13- x 9-inch baking dish, 
+        Step 2. Combine flour, 1 cup sugar, baking powder, and salt; add milk, stirring just until dry ingredients are moistened. Pour batter over butter (do not stir), 
+        Step 3. ..., etc."></textarea></label>
         <br>
         <label for="recipeType">Recipe Type : <select name="recipeType">
                         <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
