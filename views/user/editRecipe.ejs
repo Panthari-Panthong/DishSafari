@@ -12,7 +12,7 @@
         </label>
         <br>
         <label for="cookingTime">Cooking Time : <input type="number" name="cookingTime"
-                        value="<%= recipe.cookingTime %>"></label>
+                        value="<%= recipe.cookingTime %>" min="1"></label>
         <br>
         <label for="countryOfOrigin">Country Of Origin : <input type="text" name="countryOfOrigin"
                         value="<%= recipe.countryOfOrigin %>"></label>
@@ -20,21 +20,31 @@
         <label for="continent">Continent : <select name="continent" id="continent">
                         <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> {
                                 %>
-                                <option value="<%- element %>"><%- element %></option>
+                                <option value="<%- element %>" <% if(element===recipe.continent) { %>
+                                        selected
+                                        <% } %>
+                                                ><%- element %>
+                                </option>
                                 <% }) %>
                 </select>
         </label>
         <br>
         <label for="level">Level : <select name="level" id="level">
                         <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
-                                <option value="<%- element %>"><%- element %></option>
+                                <option value="<%- element %>" <% if(element===recipe.level) { %>
+                                        selected
+                                        <% } %>><%- element %>
+                                </option>
                                 <% }) %>
                 </select>
         </label>
         <br>
         <label for="mealType">Meal Type : <select name="mealType" id="mealType">
                         <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
-                                <option value="<%- element %>"><%- element %></option>
+                                <option value="<%- element %>" <% if(element===recipe.mealType) { %>
+                                        selected
+                                        <% } %>><%- element %>
+                                </option>
                                 <% }) %>
                 </select>
         </label>
@@ -49,11 +59,14 @@
                 <textarea name="directions" cols="50" rows="10" placeholder="Please start with 
             Step 1. ... , 
             Step 2. ..., 
-            etc."><%= recipe.directions %></textarea></label>
+            etc."><%= directions %></textarea></label>
         <br>
         <label for="recipeType">Recipe Type : <select name="recipeType">
                         <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
-                                <option value="<%- element %>"><%- element %></option>
+                                <option value="<%- element %>" <% if(element===recipe.recipeType) { %>
+                                        selected
+                                        <% } %>><%- element %>
+                                </option>
                                 <% }) %>
                 </select>
         </label>
