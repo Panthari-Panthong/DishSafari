@@ -3,7 +3,7 @@
 
 <div id="filter">
     <h3>Filter Recipes</h3>
-<form action="/filter-recipes" method="GET">
+<form action="/recipes/recipe/filter" method="POST">
     <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
     <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
         <option value="pleaseSelect">Please Select</option>
@@ -41,9 +41,27 @@
   </form>
 </div>
   
+<% if (!isQuery) { %>
+    <% allRecipes.forEach(recipe => { %>
+        <div>
+        <img src="<%= recipe.image %>" alt="" width="300px"/>
+      <a href="/recipes/<%- recipe._id %>">
+        <h3>
+            <%= recipe.title %>
+        </h3>
+    </a>
+    </div>
+      <% }) %>
 
-  <% allRecipes.forEach(recipe => { %>
-    <img src="<%= recipe.image %>" alt="" height="250px"/>
-  <a href="/recipes/<%- recipe._id %>"><h3><%= recipe.title %></h3></a>
-  <% }) %>
-
+  <% } else { %>
+    <% filteredRecipes.forEach(recipe => { %>
+        <div>
+            <img src="<%= recipe.image %>" alt="" width="300px"/>
+          <a href="/recipes/<%- recipe._id %>">
+            <h3>
+                <%= recipe.title %>
+            </h3>
+        </a>
+        </div>
+    <% }) %>
+    <% } %>

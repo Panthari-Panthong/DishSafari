@@ -13,7 +13,7 @@ router.get("/", async (req, res, next) => {
     // await Recipe.insertMany(data);
 
     const allRecipes = await Recipe.find();
-    res.render("recipe/allRecipes", { allRecipes });
+    res.render("recipe/allRecipes", { allRecipes, isQuery: false, });
   } catch (error) {
     console.error(error);
   }
@@ -43,68 +43,35 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
 });
 
 
-//GET filter recipes
-/* router.get('/filter-recipes', async (req, res) => {
-    try {
-    const titleFromUser = await req.body.title
-    await Recipe.find({title: titleFromUser})
-    console.log({title: titleFromUser})
+//POST filter recipes
 
-    const recipeTypeFromUser = await req.body.recipeType
-    await Recipe.find({recipeType: recipeTypeFromUser})
+router.post('/recipe/filter', async (req, res) => {
 
-    const mealTypeFromUser = await req.body.mealType
-    await Recipe.find({mealType: mealTypeFromUser})
+  try {
+    const filters = {};
 
-    const levelFromUser = await req.body.level
-    await Recipe.find({level: levelFromUser})
+    if (req.body.recipeType !== 'pleaseSelect') {
+      filters.recipeType = req.body.recipeType;
+    }
 
-    const continentFromUser = await req.body.continent
-    await Recipe.find({continent: continentFromUser})
+    if (req.body.mealType !== 'pleaseSelect') {
+      filters.mealType = req.body.mealType;
+    }
 
-    const countryFromUser = await req.body.countryOfOrigin
-    await Recipe.find({countryOfOrigin: countryFromUser})
+    if (req.body.level !== 'pleaseSelect') {
+      filters.level = req.body.level;
+    }
 
-    res.redirect('/recipes')
+    if (req.body.continent !== 'pleaseSelect') {
+      filters.continent = req.body.continent;
+    }
+
+    const filteredRecipes = await Recipe.find(filters);
+    console.log(filteredRecipes);
+    res.render('recipe/allRecipes', { filteredRecipes, isQuery: true });
   } catch (error) {
     console.error(error);
   }
-}) */
-router.get('/filter-recipes', async (req, res) => {
-
-  try {
-    const recipeTypeFromUser = req.query.recipeType;
-    const mealTypeFromUser = req.query.mealType;
-    const levelFromUser = req.query.level;
-    const continentFromUser = req.query.continent;
-
-/*   const filteredRecipes = await Recipe.find({$or: [
-    {
-      recipeType: recipeTypeFromUser
-    },
-    {
-      mealType: mealTypeFromUser
-    },
-    {
-      level: levelFromUser
-    },
-    {
-      continent: continentFromUser
-    },
-  ]}); */
-
-  const filteredRecipes = await Recipe.find({
-    recipeType: { $in: [recipeTypeFromUser] },
-    mealType: { $in: [mealTypeFromUser] },
-    level: {$in: [levelFromUser]},
-    continent: {$in: [continentFromUser]}
-
-  });
-  res.render("recipe/allRecipes", { filteredRecipes });
-} catch (error) {
-  console.error(error);
-}
 })
-
 
 module.exports = router;
