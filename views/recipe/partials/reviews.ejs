@@ -1,0 +1,24 @@
+<h1>Reviews</h1>
+
+<% if (reviews.length> 0) { %>
+    <% reviews.forEach((review)=> { %>
+        <h3>By <%= review.createdBy %>
+        </h3>
+        <% for(let i=1; i <=5 ; i++) { %>
+            <% if (i <=review.rating) { %>
+                <span class="fa fa-star checked"></span>
+                <% } %>
+                    <% } %>
+                        <p>
+                            <%= review.createdAt %>
+                        </p>
+                        <% if (review.comment) { %>
+                            <p>
+                                <%= review.comment %>
+                            </p>
+                            <% } %>
+
+                                <% }) %>
+                                    <% } else { %>
+                                        <p>No Reviews...</p>
+                                        <% } %>

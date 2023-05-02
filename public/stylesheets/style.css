@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Foodpacker;
+  src: url(../fonts/Foodpacker.otf);
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -9,4 +14,8 @@ a {
 
 h1 {
   color: 15px;
+}
+
+.logo {
+  font-family: Foodpacker;
 }
