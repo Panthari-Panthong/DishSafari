@@ -1,21 +1,166 @@
 @font-face {
   font-family: Foodpacker;
   src: url(../fonts/Foodpacker.otf);
+  font-family: GothamBook;
+  src: url(../fonts/GothamBook.ttf);
+}
+
+* {
+  margin: 0;
+}
+
+nav {
+  background-color: rgb(70, 78, 46);
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  color: rgb(233, 229, 214);
+}
+
+.nav-logo {
+  font-family: Foodpacker;
+  font-size: 2rem;
 }
 
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: GothamBook;
+  background-color: rgb(233, 229, 214);
 }
 
 a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
-}
-
 .logo {
   font-family: Foodpacker;
 }
+
+footer {
+  background-color: rgb(54, 39, 6);
+  color: rgb(233, 229, 214);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.homepage-logo {
+  font-family: Foodpacker;
+  font-size: 10rem;
+  color: rgb(70, 78, 46);
+  display: flex;
+  justify-content: center;
+}
+
+#recipe-btn {
+display: flex;
+justify-content: center;
+}
+
+.recipes-btn {
+  background-color: rgb(172, 185, 146);
+  color: rgb(54, 39, 6);
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 10px 30px;
+  border: rgb(54, 39, 6) solid 0.5px;
+  border-radius: 15px;
+}
+
+#about-us {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#about-us h2  {
+  text-align: center;
+  list-style: inside;
+    display: inline-block;
+  width: 60%;
+  
+}
+
+#about-us p  {
+  text-align: center;
+  list-style: inside;
+    display: inline-block;
+  width: 60%;
+  
+}
+
+.login {
+  color: rgb(70, 78, 46);
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  margin: 5px;
+}
+
+#login-btn {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  }
+
+.login-btn {
+  background-color: rgb(172, 185, 146);
+  color: rgb(54, 39, 6);
+  font-family: GothamBook;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: rgb(54, 39, 6) solid 0.5px;
+  border-radius: 15px;
+}
+
+.signup {
+  color: rgb(70, 78, 46);
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#signup-btn {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  }
+
+.signup-btn {
+  background-color: rgb(172, 185, 146);
+  color: rgb(54, 39, 6);
+  font-family: GothamBook;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: rgb(54, 39, 6) solid 0.5px;
+  border-radius: 15px;
+}
+
