@@ -182,13 +182,13 @@ label {
   padding: 5px 15px;
   border: rgb(54, 39, 6) solid 0.5px;
   border-radius: 15px;
-  margin-left: 15px;
 }
 
 #edit-btn {
   display: flex;
   justify-content: center;
   align-items: baseline;
+  text-align: center;
 }
 
 #randomSection {

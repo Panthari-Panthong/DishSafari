@@ -1,4 +1,6 @@
-<h1>EDIT RECIPE</h1>
+<div class="login">
+<h2>EDIT RECIPE</h2>
+</div>
 
 <form action="/user/recipe/<%- recipe._id %>/edit" method="post" enctype="multipart/form-data">
         <div id="editCreateRecipe">
@@ -60,14 +62,19 @@
                                 <% }) %>
                 </select>
         </label>
-        </form>
-</div>
-        <br>
-        <button type="submit">Edit</button>
+        <button class="btn" type="submit">Edit</button>
+        </div>
 </form>
-<form action="/user/recipe/<%- recipe._id %>/delete" method="post"
+
+        <br>
+        
+        <div id="edit-btn">
+        <form action="/user/recipe/<%- recipe._id %>/delete" method="post"
         onsubmit="return confirm('Are you sure you want to delete?');">
         <input type="hidden" name="confirmDelete" value="true">
-        <button type="submit">Delete</button>
+        <button class="deleteBtn" type="submit">Delete</button>
+        </div>
 </form>
+        
+        
 
