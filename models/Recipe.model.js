@@ -11,11 +11,9 @@ const recipeSchema = new Schema(
     },
     cookingTime: {
       type: Number,
-      required: true,
     },
     countryOfOrigin: {
       type: String,
-      required: true,
     },
     continent: {
       type: String,
