@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/Recipe.model");
 
+const BMI = require("../models/BMI.model");
+
 // ********* require fileUploader in order to use it *********
 const fileUploader = require("../config/cloudinary.config");
 
@@ -17,10 +19,26 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
       createdBy: req.session.currentUser,
     });
 
+    const bmiUser = await BMI.find({
+      user: req.session.currentUser,
+    });
+
+    let bmi = 0;
+    let result = "";
+    let resultPic = "";
+    if (bmiUser.length !== 0) {
+      bmi = bmiUser[0].bmi;
+      result = bmiUser[0].result;
+      resultPic = bmiUser[0].resultPic;
+    }
+
     res.render("user/profile", {
       userInSession: req.session.currentUser,
       allRecipes,
       isQuery: false,
+      bmi,
+      result,
+      resultPic,
     });
   } catch (error) {
     next(error);
@@ -100,9 +118,17 @@ router.post(
         recipeType,
       } = req.body;
 
+      let imageUrl;
+      if (req.file) {
+        imageUrl = req.file.path;
+      } else {
+        imageUrl =
+          "https://res.cloudinary.com/dkzhxg8ci/image/upload/v1683125073/DishSafari/Defalt-recipePic_in2b7k.jpg";
+      }
+
       await Recipe.create({
         title,
-        image: req.file.path,
+        image: imageUrl,
         cookingTime,
         countryOfOrigin,
         continent,
@@ -126,26 +152,43 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
   try {
     // console.log("ID", req.params.recipeID);
     const recipe = await Recipe.findById(req.params.recipeID);
-    // Alert
-    const alertMessage = res.locals.alertMessage;
-    res.render("user/recipe", { recipe, alertMessage });
+    res.render("user/recipe", {
+      userInSession: req.session.currentUser,
+      recipe,
+    });
   } catch (error) {
     next("ERROR", error);
   }
 });
 
 // Edit||Update recipe
-router.get("/recipe/:recipeID/edit", async (req, res, next) => {
+router.get("/recipe/:recipeID/edit", isLoggedIn, async (req, res, next) => {
   try {
     const recipe = await Recipe.findById(req.params.recipeID);
 
-    const directions = recipe.directions.map(
-      (direction) => "Step " + direction
+    // "\r\n" line breaks for each ingredient in textarea
+    const editIngredients = recipe.ingredients.map(
+      (ingredient) => ingredient + "," + "\r\n"
     );
 
-    const alertMessage = res.locals.alertMessage;
+    // Removing commas from ingredients array
+    const ingredients = editIngredients.join("");
 
-    res.render("user/editRecipe", { recipe, directions, alertMessage });
+    // Add "Step " in the beginning of each string
+    // "\r\n" line breaks for each direction in textarea
+    const editDirections = recipe.directions.map(
+      (direction) => "Step " + direction + "\r\n"
+    );
+
+    // Removing commas from directions array
+    const directions = editDirections.join("");
+
+    res.render("user/editRecipe", {
+      userInSession: req.session.currentUser,
+      recipe,
+      ingredients,
+      directions,
+    });
   } catch (error) {
     next(error);
   }
@@ -242,9 +285,12 @@ router.post(
 router.post("/recipe/:recipeID/delete", isLoggedIn, async (req, res, next) => {
   try {
     //Find with ID and delete
-    res.locals.alertMessage = "Data deleted successfully!";
-    await Recipe.findByIdAndRemove(req.params.recipeID);
-    res.redirect("/user/profile");
+    if (req.body.confirmDelete === "true") {
+      await Recipe.findByIdAndRemove(req.params.recipeID);
+      res.redirect("/user/profile");
+    } else {
+      res.redirect(`/user/recipe/${req.params.recipeID}`);
+    }
   } catch (error) {
     next(error);
   }

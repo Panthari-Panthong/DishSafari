@@ -1,10 +1,4 @@
-<a href="/user/profile">Back to profile!</a>
-<a href="/user/recipe/<%- recipe._id %>">Back to recipe!</a>
-
-<div class="login">
-<h2>EDIT RECIPE</h2>
-</div>
-
+<h1>EDIT RECIPE</h1>
 
 <form action="/user/recipe/<%- recipe._id %>/edit" method="post" enctype="multipart/form-data">
         <div id="editCreateRecipe">
@@ -48,8 +42,10 @@
         </label>
         <label for="serves">Serves : <input class="inputFields" type="number" name="serves" value="<%= recipe.serves %>"> </label>
 
+
         <label for="ingredients">Ingredients : <textarea name="ingredients" cols="40" rows="10"
                         placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "><%= recipe.ingredients %></textarea></label>
+
         <label for="directions">Directions :
                 <textarea name="directions" cols="40" rows="10" placeholder="Please start with 
             Step 1. ... , 
@@ -67,24 +63,11 @@
         </form>
 </div>
         <br>
-        <div id="edit-btn">
-                <button class="btn" type="submit">Edit</button>
-                <form action="/user/recipe/<%- recipe._id %>/delete" method="post">
-                <button class="deleteBtn" onclick="confirmDelete()">Delete</button>
+        <button type="submit">Edit</button>
+</form>
+<form action="/user/recipe/<%- recipe._id %>/delete" method="post"
+        onsubmit="return confirm('Are you sure you want to delete?');">
+        <input type="hidden" name="confirmDelete" value="true">
+        <button type="submit">Delete</button>
+</form>
 
-                </form>
-        </div>
-
-<% if (alertMessage) { %>
-        <script>
-                alert("<%= alertMessage %>");
-        </script>
-        <% } %>
-
-                <script>
-                        function confirmDelete() {
-                                if (confirm("Are you sure you want to delete?")) {
-                                        document.getElementById("myForm").submit();
-                                }
-                        }
-                </script>

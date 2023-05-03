@@ -1,30 +1,29 @@
 <% if(userInSession) { %>
     <div class="profileGreeting">
-    <h2>Welcome <%= userInSession.username %>! </h2>
-    <p>Here are all your Recipes!</p>
-    <form action="/user/recipe/search" method="post" autocomplete="off">
-        <input type="text" name="query" placeholder="Search...">
-        <button class="btn" type="submit">Search</button>
-    </form>
-    <a href="/user/profile">Clear!</a>
-</div>
-    <br>
-
-    <% if (!isQuery) { %>
-        <% allRecipes.forEach(recipe=> { %>
-            <div class="container">
-                <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
-                <a href="/user/recipe/<%= recipe._id %>">
-                    <h3>
-                        <%= recipe.title %>
-                    </h3>
-                </a>
-            </div>
-            <% }) %>
-
-                <% } else { %>
-                    <% queryRecipe.forEach(recipe=> { %>
-                        <div class="container">
+    <h1>Welcome <%= userInSession.username %>! </h1>
+    <h2>BMI Result</h2>
+    <p>Your BMI is <%= bmi.toFixed(1) %>
+    </p>
+    <p>Result : <%= result %>
+    </p>
+    <img src="/images/BMI-<%- resultPic %>.png" alt="<%- resultPic %>" style="height: 200px;">
+    <% if (bmi===0.0) { %>
+        <a href="/bmi/<%- userInSession._id %>">Calculate BMI</a>
+        <% } else { %>
+            <a href="/bmi/<%- userInSession._id %>/edit">Calculate another BMI</a>
+            <% } %>
+                <hr>
+                <p>Here are all your Recipes!</p>
+                <form action="/user/recipe/search" method="post" autocomplete="off">
+                <input type="text" name="query" placeholder="Search...">
+                <button class="btn" type="submit">Search</button>
+                </form>
+                <a href="/user/profile">Clear!</a>
+      </div>
+      <br>
+                <% if (!isQuery) { %>
+                    <% allRecipes.forEach(recipe=> { %>
+                          <div class="container">
                             <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                             <a href="/user/recipe/<%= recipe._id %>">
                                 <h3>
@@ -33,11 +32,24 @@
                             </a>
                         </div>
                         <% }) %>
-                            <% } %>
+                        
+                            <% } else { %>
+                                <% queryRecipe.forEach(recipe=> { %>
+                                     <div class="container">
+                                        <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+                                        <a href="/user/recipe/<%= recipe._id %>">
+                                            <h3>
+                                                <%= recipe.title %>
+                                            </h3>
+                                        </a>
+                                    </div>
+                                    <% }) %>
+                                        <% } %>
 
-                                <% } else { %>
-                                    <br>
-                                    <p>Still no logged in user, sorry!</p>
-                                    <% } %>
+                                            <% } else { %>
+                                                <br>
+                                                <p>Still no logged in user, sorry!</p>
+                                                <% } %>
 
-                                        <a class="logoutBtn" href="/user/recipe/create">Create Recipe!</a>
+                                                    <a href="/user/recipe/create">Create Recipe!</a>
+

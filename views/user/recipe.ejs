@@ -1,54 +1,42 @@
-<a href="/user/profile">Back to profile</a>
-<h1><%= recipe.title %></h1>
+<h1>
+    <%= recipe.title %>
+</h1>
 <div>
-  <img
-    src="<%= recipe.image %>"
-    alt="<%= recipe.title %>"
-    style="width: 400px"
-  />
-  <br />
-  <p>Cooking Time : <%= recipe.cookingTime %> minutes</p>
-  <p>Country Of Origin : <%= recipe.countryOfOrigin %></p>
-  <p>Continent : <%= recipe.continent %></p>
-  <p>Meal Type : <%= recipe.mealType %></p>
-  <p>Serves : <%= recipe.serves %></p>
-  <h3>Ingredients :</h3>
-  <ul>
-    <% recipe.ingredients.forEach(ingredient=> { %>
-    <li><%= ingredient %></li>
-    <% }) %>
-  </ul>
-  <h3>Directions :</h3>
-  <ul>
-    <% recipe.directions.map(direction=> { %>
-    <li><%= direction %></li>
-    <% }) %>
-  </ul>
-  <div id="edit-btn">
-    <a href="/user/recipe/<%- recipe._id %>/edit"
-      ><button class="btn" type="submit">Edit</button></a
-    >
+    <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 400px" />
+    <br />
+    <p>Cooking Time : <%= recipe.cookingTime %> minutes</p>
+    <p>Country Of Origin : <%= recipe.countryOfOrigin %>
+    </p>
+    <p>Continent : <%= recipe.continent %>
+    </p>
+    <p>Meal Type : <%= recipe.mealType %>
+    </p>
+    <p>Serves : <%= recipe.serves %>
+    </p>
+    <h3>Ingredients :</h3>
+    <ul>
+        <% recipe.ingredients.forEach(ingredient=> { %>
+            <li>
+                <%= ingredient %>
+            </li>
+            <% }) %>
+    </ul>
+    <h3>Directions :</h3>
+    <ul>
+        <% recipe.directions.map(direction=> { %>
+            <li>
+                <%= direction %>
+            </li>
+            <% }) %>
+    </ul>
 
-    <form
-      action="/user/recipe/<%- recipe._id %>/delete"
-      method="post"
-      id="myForm"
-    >
-      <button class="deleteBtn" onclick="confirmDelete()">Delete</button>
+    <a class="btn" href="/user/recipe/<%- recipe._id %>/edit">Edit</a>
+
+
+    <form action="/user/recipe/<%- recipe._id %>/delete" method="post"
+        onsubmit="return confirm('Are you sure you want to delete?');">
+        <input type="hidden" name="confirmDelete" value="true">
+        <button class="deleteBtn" type="submit">Delete</button>
     </form>
-  </div>
-
-  <% if (alertMessage) { %>
-  <script>
-    alert("<%= alertMessage %>");
-  </script>
-  <% } %>
-
-  <script>
-    function confirmDelete() {
-      if (confirm("Are you sure you want to delete?")) {
-        document.getElementById("myForm").submit();
-      }
-    }
-  </script>
 </div>
+
