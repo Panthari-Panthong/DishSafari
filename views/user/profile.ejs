@@ -1,11 +1,5 @@
-<form action="/user/recipe/search" method="post" autocomplete="off">
-    <input type="text" name="query" placeholder="Search...">
-    <button type="submit">Search</button>
-</form>
-<a href="/user/profile">Clear!</a>
-
-
 <% if(userInSession) { %>
+    <div class="profileGreeting">
     <h1>Welcome <%= userInSession.username %>! </h1>
     <h2>BMI Result</h2>
     <p>Your BMI is <%= bmi.toFixed(1) %>
@@ -19,10 +13,17 @@
             <a href="/bmi/<%- userInSession._id %>/edit">Calculate another BMI</a>
             <% } %>
                 <hr>
-                <p>This is all your Recipes!</p>
+                <p>Here are all your Recipes!</p>
+                <form action="/user/recipe/search" method="post" autocomplete="off">
+                <input type="text" name="query" placeholder="Search...">
+                <button class="btn" type="submit">Search</button>
+                </form>
+                <a href="/user/profile">Clear!</a>
+      </div>
+      <br>
                 <% if (!isQuery) { %>
                     <% allRecipes.forEach(recipe=> { %>
-                        <div>
+                          <div class="container">
                             <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                             <a href="/user/recipe/<%= recipe._id %>">
                                 <h3>
@@ -31,10 +32,10 @@
                             </a>
                         </div>
                         <% }) %>
-
+                        
                             <% } else { %>
                                 <% queryRecipe.forEach(recipe=> { %>
-                                    <div>
+                                     <div class="container">
                                         <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                                         <a href="/user/recipe/<%= recipe._id %>">
                                             <h3>
@@ -51,3 +52,4 @@
                                                 <% } %>
 
                                                     <a href="/user/recipe/create">Create Recipe!</a>
+
