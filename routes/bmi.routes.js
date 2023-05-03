@@ -48,9 +48,10 @@ router.post("/:userID", async (req, res, next) => {
 
 // ---------------- Start Edit --------------------
 router.get("/:userID/edit", async (req, res, next) => {
+  console.log("USERID", req.params.userID);
   try {
     const bmi = await BMI.find({
-      user: req.session.currentUser,
+      user: req.params.userID,
     });
     res.render("user/bmi/bmiEdit", {
       userInSession: req.session.currentUser,

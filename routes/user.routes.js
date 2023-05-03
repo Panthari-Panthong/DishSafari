@@ -118,9 +118,17 @@ router.post(
         recipeType,
       } = req.body;
 
+      let imageUrl;
+      if (req.file) {
+        imageUrl = req.file.path;
+      } else {
+        imageUrl =
+          "https://res.cloudinary.com/dkzhxg8ci/image/upload/v1683125073/DishSafari/Defalt-recipePic_in2b7k.jpg";
+      }
+
       await Recipe.create({
         title,
-        image: req.file.path,
+        image: imageUrl,
         cookingTime,
         countryOfOrigin,
         continent,
