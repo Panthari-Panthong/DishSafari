@@ -70,20 +70,8 @@
         <br>
         <button type="submit">Edit</button>
 </form>
-<form action="/user/recipe/<%- recipe._id %>/delete" method="post">
-        <button onclick="confirmDelete()">Delete</button>
+<form action="/user/recipe/<%- recipe._id %>/delete" method="post"
+        onsubmit="return confirm('Are you sure you want to delete?');">
+        <input type="hidden" name="confirmDelete" value="true">
+        <button type="submit">Delete</button>
 </form>
-
-<% if (alertMessage) { %>
-        <script>
-                alert("<%= alertMessage %>");
-        </script>
-        <% } %>
-
-                <script>
-                        function confirmDelete() {
-                                if (confirm("Are you sure you want to delete?")) {
-                                        document.getElementById("myForm").submit();
-                                }
-                        }
-                </script>

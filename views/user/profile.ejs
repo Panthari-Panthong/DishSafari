@@ -7,21 +7,21 @@
 
 <% if(userInSession) { %>
     <h1>Welcome <%= userInSession.username %>! </h1>
-    <p>This is all your Recipes!</p>
-    <% if (!isQuery) { %>
-        <% allRecipes.forEach(recipe=> { %>
-            <div>
-                <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
-                <a href="/user/recipe/<%= recipe._id %>">
-                    <h3>
-                        <%= recipe.title %>
-                    </h3>
-                </a>
-            </div>
-            <% }) %>
-
-                <% } else { %>
-                    <% queryRecipe.forEach(recipe=> { %>
+    <h2>BMI Result</h2>
+    <p>Your BMI is <%= bmi.toFixed(1) %>
+    </p>
+    <p>Result : <%= result %>
+    </p>
+    <img src="/images/BMI-<%- resultPic %>.png" alt="<%- resultPic %>" style="height: 200px;">
+    <% if (bmi===0.0) { %>
+        <a href="/bmi/<%- userInSession._id %>">Calculate BMI</a>
+        <% } else { %>
+            <a href="/bmi/<%- userInSession._id %>/edit">Calculate another BMI</a>
+            <% } %>
+                <hr>
+                <p>This is all your Recipes!</p>
+                <% if (!isQuery) { %>
+                    <% allRecipes.forEach(recipe=> { %>
                         <div>
                             <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                             <a href="/user/recipe/<%= recipe._id %>">
@@ -31,11 +31,23 @@
                             </a>
                         </div>
                         <% }) %>
-                            <% } %>
 
-                                <% } else { %>
-                                    <br>
-                                    <p>Still no logged in user, sorry!</p>
-                                    <% } %>
+                            <% } else { %>
+                                <% queryRecipe.forEach(recipe=> { %>
+                                    <div>
+                                        <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+                                        <a href="/user/recipe/<%= recipe._id %>">
+                                            <h3>
+                                                <%= recipe.title %>
+                                            </h3>
+                                        </a>
+                                    </div>
+                                    <% }) %>
+                                        <% } %>
 
-                                        <a href="/user/recipe/create">Create Recipe!</a>
+                                            <% } else { %>
+                                                <br>
+                                                <p>Still no logged in user, sorry!</p>
+                                                <% } %>
+
+                                                    <a href="/user/recipe/create">Create Recipe!</a>

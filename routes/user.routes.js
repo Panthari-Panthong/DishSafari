@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Recipe = require("../models/Recipe.model");
 
+const BMI = require("../models/BMI.model");
+
 // ********* require fileUploader in order to use it *********
 const fileUploader = require("../config/cloudinary.config");
 
@@ -17,10 +19,26 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
       createdBy: req.session.currentUser,
     });
 
+    const bmiUser = await BMI.find({
+      user: req.session.currentUser,
+    });
+
+    let bmi = 0;
+    let result = "";
+    let resultPic = "";
+    if (bmiUser.length !== 0) {
+      bmi = bmiUser[0].bmi;
+      result = bmiUser[0].result;
+      resultPic = bmiUser[0].resultPic;
+    }
+
     res.render("user/profile", {
       userInSession: req.session.currentUser,
       allRecipes,
       isQuery: false,
+      bmi,
+      result,
+      resultPic,
     });
   } catch (error) {
     next(error);
@@ -126,12 +144,9 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
   try {
     // console.log("ID", req.params.recipeID);
     const recipe = await Recipe.findById(req.params.recipeID);
-    // Alert
-    const alertMessage = res.locals.alertMessage;
     res.render("user/recipe", {
       userInSession: req.session.currentUser,
       recipe,
-      alertMessage,
     });
   } catch (error) {
     next("ERROR", error);
@@ -160,15 +175,11 @@ router.get("/recipe/:recipeID/edit", isLoggedIn, async (req, res, next) => {
     // Removing commas from directions array
     const directions = editDirections.join("");
 
-    // Sending alertMessage before delete recipe
-    const alertMessage = res.locals.alertMessage;
-
     res.render("user/editRecipe", {
       userInSession: req.session.currentUser,
       recipe,
       ingredients,
       directions,
-      alertMessage,
     });
   } catch (error) {
     next(error);
@@ -266,9 +277,12 @@ router.post(
 router.post("/recipe/:recipeID/delete", isLoggedIn, async (req, res, next) => {
   try {
     //Find with ID and delete
-    res.locals.alertMessage = "Data deleted successfully!";
-    await Recipe.findByIdAndRemove(req.params.recipeID);
-    res.redirect("/user/profile");
+    if (req.body.confirmDelete === "true") {
+      await Recipe.findByIdAndRemove(req.params.recipeID);
+      res.redirect("/user/profile");
+    } else {
+      res.redirect(`/user/recipe/${req.params.recipeID}`);
+    }
   } catch (error) {
     next(error);
   }
