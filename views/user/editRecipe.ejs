@@ -1,6 +1,3 @@
-<a href="/user/profile">Back to profile!</a>
-<a href="/user/recipe/<%- recipe._id %>">Back to recipe!</a>
-
 <h1>EDIT RECIPE</h1>
 
 <form action="/user/recipe/<%- recipe._id %>/edit" method="post" enctype="multipart/form-data">
@@ -53,7 +50,7 @@
 
         <br>
         <label for="ingredients">Ingredients : <textarea name="ingredients" cols="30" rows="10"
-                        placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "><%= recipe.ingredients %></textarea></label>
+                        placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "><%= ingredients %></textarea></label>
         <br>
         <label for="directions">Directions :
                 <textarea name="directions" cols="50" rows="10" placeholder="Please start with 
