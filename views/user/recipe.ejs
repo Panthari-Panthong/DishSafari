@@ -24,26 +24,31 @@
     <li><%= direction %></li>
     <% }) %>
   </ul>
+  <div id="edit-btn">
+    <a href="/user/recipe/<%- recipe._id %>/edit"
+      ><button class="btn" type="submit">Edit</button></a
+    >
 
-  <a href="/user/recipe/<%- recipe._id %>/edit">Edit</a>
-
-
-    <form action="/user/recipe/<%- recipe._id %>/delete" method="post" id="myForm">
-        <button onclick="confirmDelete()">Delete</button>
+    <form
+      action="/user/recipe/<%- recipe._id %>/delete"
+      method="post"
+      id="myForm"
+    >
+      <button class="deleteBtn" onclick="confirmDelete()">Delete</button>
     </form>
+  </div>
+
+  <% if (alertMessage) { %>
+  <script>
+    alert("<%= alertMessage %>");
+  </script>
+  <% } %>
+
+  <script>
+    function confirmDelete() {
+      if (confirm("Are you sure you want to delete?")) {
+        document.getElementById("myForm").submit();
+      }
+    }
+  </script>
 </div>
-
-<% if (alertMessage) { %>
-    <script>
-        alert("<%= alertMessage %>");
-    </script>
-    <% } %>
-
-        <script>
-            function confirmDelete() {
-                if (confirm("Are you sure you want to delete?")) {
-                    document.getElementById("myForm").submit();
-                }
-            }
-        </script>
-

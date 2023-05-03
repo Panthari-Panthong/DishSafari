@@ -1,24 +1,18 @@
-<a href="/">Home</a>
-<a href="/recipes">Recipes page</a>
-
-<form id="logout-form" action="/logout" method="POST">
-    <button>Logout</button>
-</form>
-
-
-<form action="/user/recipe/search" method="post" autocomplete="off">
-    <input type="text" name="query" placeholder="Search...">
-    <button type="submit">Search</button>
-</form>
-<a href="/user/profile">Clear!</a>
-
-
 <% if(userInSession) { %>
-    <h1>Welcome <%= userInSession.username %>! </h1>
-    <p>This is all your Recipes!</p>
+    <div class="profileGreeting">
+    <h2>Welcome <%= userInSession.username %>! </h2>
+    <p>Here are all your Recipes!</p>
+    <form action="/user/recipe/search" method="post" autocomplete="off">
+        <input type="text" name="query" placeholder="Search...">
+        <button class="btn" type="submit">Search</button>
+    </form>
+    <a href="/user/profile">Clear!</a>
+</div>
+    <br>
+
     <% if (!isQuery) { %>
         <% allRecipes.forEach(recipe=> { %>
-            <div>
+            <div class="container">
                 <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                 <a href="/user/recipe/<%= recipe._id %>">
                     <h3>
@@ -30,7 +24,7 @@
 
                 <% } else { %>
                     <% queryRecipe.forEach(recipe=> { %>
-                        <div>
+                        <div class="container">
                             <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                             <a href="/user/recipe/<%= recipe._id %>">
                                 <h3>
@@ -46,4 +40,4 @@
                                     <p>Still no logged in user, sorry!</p>
                                     <% } %>
 
-                                        <a href="/user/recipe/create">Create Recipe!</a>
+                                        <a class="logoutBtn" href="/user/recipe/create">Create Recipe!</a>

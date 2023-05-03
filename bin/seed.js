@@ -6,13 +6,17 @@ const data = require("../data.json");
 
 require("../db/index");
 
+
+
 const insertData = async () => {
   try {
-    await Recipe.insertMany(data);
-    mongoose.connection.close();
+    let insertedRecipes = await Recipe.insertMany(data);
+    console.log(insertedRecipes)
   } catch (error) {
     mongoose.connection.close();
     console.log("ERROR", error);
+  } finally {
+    mongoose.connection.close();
   }
 };
 

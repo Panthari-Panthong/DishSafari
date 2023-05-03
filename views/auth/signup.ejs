@@ -14,13 +14,13 @@
     <label>Password : <input class="input" type="password" name="password" required /></label>
     <br>
     <div id="signup-btn">
-    <button class="signup-btn" type="submit">Sign Up</button>
+    <button class="btn" type="submit">Sign Up</button>
 </div>
 </form>
 </div>
 
 <% if (typeof errorMessage !=='undefined' ) { %>
-    <p style="color: red">
+    <p class="signup" style="color: red">
         <%= errorMessage %>
     </p>
     <% } %>

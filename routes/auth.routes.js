@@ -105,7 +105,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
 
       // If we don't have a user with the given username
     } else {
-      res.render("auth/login", { errorMessage: "User does not exists" });
+      res.render("auth/login", { errorMessage: "User does not exist" });
     }
   } catch (error) {
     next(error);
