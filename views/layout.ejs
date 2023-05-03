@@ -14,19 +14,29 @@
 </head>
 <nav id="nav">
   <div class="links">
-  <a href="/" class="nav-logo">DishSafari</a>
+    <a href="/" class="nav-logo">DishSafari</a>
   </div>
   <div class="search-bar">
-  <a href="/">Home</a>
-  <a href="/recipes">Recipes</a>
-  <a href="/signup">SIGNUP</a>
-  <a href="/login">LOGIN</a>
+    <a href="/">Home</a>
+    <a href="/recipes">Recipes</a>
+    <% if (locals.userInSession) { %>
+      <a href="/user/profile">Profile</a>
+      <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/signup">SIGNUP</a>
+        <a href="/login">LOGIN</a>
+        <% } %>
+
   </div>
 </nav>
+
 <body>
   <%- body %>
 
     <script src="/js/script.js"></script>
 </body>
-<footer class="footer"><p>©2023 - DishSafari</p></footer>
+<footer class="footer">
+  <p>©2023 - DishSafari</p>
+</footer>
+
 </html>

@@ -128,24 +128,48 @@ router.get("/recipe/:recipeID", isLoggedIn, async (req, res, next) => {
     const recipe = await Recipe.findById(req.params.recipeID);
     // Alert
     const alertMessage = res.locals.alertMessage;
-    res.render("user/recipe", { recipe, alertMessage });
+    res.render("user/recipe", {
+      userInSession: req.session.currentUser,
+      recipe,
+      alertMessage,
+    });
   } catch (error) {
     next("ERROR", error);
   }
 });
 
 // Edit||Update recipe
-router.get("/recipe/:recipeID/edit", async (req, res, next) => {
+router.get("/recipe/:recipeID/edit", isLoggedIn, async (req, res, next) => {
   try {
     const recipe = await Recipe.findById(req.params.recipeID);
 
-    const directions = recipe.directions.map(
-      (direction) => "Step " + direction
+    // "\r\n" line breaks for each ingredient in textarea
+    const editIngredients = recipe.ingredients.map(
+      (ingredient) => ingredient + "," + "\r\n"
     );
 
+    // Removing commas from ingredients array
+    const ingredients = editIngredients.join("");
+
+    // Add "Step " in the beginning of each string
+    // "\r\n" line breaks for each direction in textarea
+    const editDirections = recipe.directions.map(
+      (direction) => "Step " + direction + "\r\n"
+    );
+
+    // Removing commas from directions array
+    const directions = editDirections.join("");
+
+    // Sending alertMessage before delete recipe
     const alertMessage = res.locals.alertMessage;
 
-    res.render("user/editRecipe", { recipe, directions, alertMessage });
+    res.render("user/editRecipe", {
+      userInSession: req.session.currentUser,
+      recipe,
+      ingredients,
+      directions,
+      alertMessage,
+    });
   } catch (error) {
     next(error);
   }

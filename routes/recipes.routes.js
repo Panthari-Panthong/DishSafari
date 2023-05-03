@@ -10,7 +10,11 @@ const Review = require("../models/Review.model");
 router.get("/", async (req, res, next) => {
   try {
     const allRecipes = await Recipe.find();
-    res.render("recipe/allRecipes", { allRecipes, isQuery: false });
+    res.render("recipe/allRecipes", {
+      allRecipes,
+      isQuery: false,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -30,6 +34,7 @@ router.get("/:recipeId", async (req, res, next) => {
       onlyOneRecipe,
       reviews,
       recipeId: req.params.recipeId,
+      userInSession: req.session.currentUser,
     });
   } catch (error) {
     console.error(error);
@@ -43,7 +48,10 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
     const randomRecipeLength = oneRandomRecipe.length;
     const randomRecipeIndex = Math.floor(Math.random() * randomRecipeLength);
     const randomRecipe = oneRandomRecipe[randomRecipeIndex];
-    res.render("recipe/randomRecipe", { randomRecipe });
+    res.render("recipe/randomRecipe", {
+      randomRecipe,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     console.error(error);
   }
