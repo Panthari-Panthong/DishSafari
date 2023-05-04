@@ -6,7 +6,7 @@
 <div class="signup-form">
 <form action="/signup" method="POST">
     <label>Username :
-        <input class="input" name="username" required
+        <input class="input" type="text" name="username" required
             value="<% if (typeof errorMessage !== 'undefined') { %><%= username %><% } %>" />
     </label>
 <br>
