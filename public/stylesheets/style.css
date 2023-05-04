@@ -1,12 +1,6 @@
-@font-face {
-  font-family: Foodpacker;
-  src: url(../fonts/Foodpacker.otf);
-  font-family: GothamBook;
-  src: url(../fonts/GothamBook.ttf);
-}
-
 * {
   margin: 0;
+  box-sizing: border-box;
 }
 
 nav {
@@ -25,12 +19,12 @@ nav a {
 }
 
 .nav-logo {
-  font-family: Foodpacker;
+  font-family: 'Caesar Dressing', cursive;
   font-size: 2rem;
 }
 
 body {
-  font-family: GothamBook;
+  font-family: 'Comfortaa', cursive;
   background-color: rgb(233, 229, 214);
 }
 
@@ -39,7 +33,7 @@ a {
 }
 
 .logo {
-  font-family: Foodpacker;
+  font-family: 'Bangers', cursive;
 }
 
 footer {
@@ -53,7 +47,7 @@ footer {
 }
 
 .homepage-logo {
-  font-family: Foodpacker;
+  font-family: 'Caesar Dressing', cursive;
   font-size: 10rem;
   color: rgb(70, 78, 46);
   display: flex;
@@ -121,18 +115,6 @@ justify-content: center;
   margin: 10px;
   }
 
-.login-btn {
-  background-color: rgb(172, 185, 146);
-  color: rgb(54, 39, 6);
-  font-family: GothamBook;
-  font-size: 1rem;
-  font-weight: 900;
-  text-decoration: none;
-  padding: 5px 15px;
-  border: rgb(54, 39, 6) solid 0.5px;
-  border-radius: 15px;
-}
-
 .signup {
   color: rgb(70, 78, 46);
   display: flex;
@@ -152,10 +134,96 @@ justify-content: center;
   margin: 10px;
   }
 
-.signup-btn {
+.btn {
   background-color: rgb(172, 185, 146);
   color: rgb(54, 39, 6);
-  font-family: GothamBook;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: rgb(54, 39, 6) solid 0.5px;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+/* #editCreateRecipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputFields {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.selectFields {
+  width: 307px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+label {
+  flex: 1 1 auto;
+  text-align: left;
+  margin-right: 10px;
+} */
+
+input[type=text], input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+.containerForm {
+  border-radius: 5px;
+  background-color: rgb(233, 229, 214);
+  padding: 0 100px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.deleteBtn {
+  background-color: rgb(144, 12, 63);
+  color: rgb(233, 229, 214);
+  font-family: 'Comfortaa', cursive;
   font-size: 1rem;
   font-weight: 900;
   text-decoration: none;
@@ -164,3 +232,76 @@ justify-content: center;
   border-radius: 15px;
 }
 
+#edit-btn {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  text-align: center;
+}
+
+#randomSection {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.container {
+  padding: 25px;
+  width: fit-content;
+}
+
+.recipeContainer {
+  padding-left: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileGreeting {
+    color: rgb(70, 78, 46);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.logoutBtn {
+  background-color: rgb(172, 185, 146);
+  color: rgb(54, 39, 6);
+  font-family: 'Comfortaa', cursive;
+  font-size: 1rem;
+  font-weight: 900;
+  text-decoration: none;
+  padding: 5px 15px;
+  border: rgb(54, 39, 6) solid 0.5px;
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.container-filter {
+  background-color: rgb(70, 78, 46);
+  color: rgb(233, 229, 214);
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    max-width: 160px;
+    display: grid;
+    align-items: flex;
+    justify-content: start;
+    position: fixed;
+}
+
+#allRecipesLayout {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
