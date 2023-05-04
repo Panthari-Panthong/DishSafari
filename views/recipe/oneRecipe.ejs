@@ -1,8 +1,14 @@
 <% if (onlyOneRecipe !==null) { %>
+  <div class="recipeFull">
+  <div class="recipeTop">
+  <div class="recipeTitlePic">
   <h1>
     <%= onlyOneRecipe.title %>
   </h1>
+  <br>
   <img src="<%= onlyOneRecipe.image %>" alt="<%= onlyOneRecipe.title %>" style="width: 400px" />
+</div>
+<div class="recipeInfos">
   <p>Created By : <%= onlyOneRecipe.createdBy %>
   </p>
   <p>Cooking Time : <%= onlyOneRecipe.cookingTime %> minuntes</p>
@@ -18,6 +24,10 @@
   </p>
   <p>Serves : <%= onlyOneRecipe.serves %>
   </p>
+</div>
+</div>
+<div class="recipeBottom">
+<div class="recipeIngredients">
   <h3>Ingredients : </h3>
   <ul>
     <% onlyOneRecipe.ingredients.forEach(ingredient=> { %>
@@ -26,14 +36,22 @@
       </li>
       <% }) %>
   </ul>
+</div>
+<div class="recipeDirections">
   <h3>Directions : </h3>
-  <ul>
+  <ul class="directionsUl">
     <% onlyOneRecipe.directions.map(direction=> { %>
       <li>
-        <%= direction %>
+        Step <%= direction %>
       </li>
       <% }) %>
   </ul>
-
-
+</div>
+</div>
+<div class="hr">
+  <hr>
+</div>
+<div class="recipeReviews">
   <% } %> <%- include('partials/reviews.ejs', {reviews : reviews}) %> <%- include('partials/reviewForm.ejs') %>
+</div>
+</div>

@@ -1,6 +1,11 @@
-<a href="/recipes">All Recipes</a>
+<div class="recipeFull">
+    <div class="recipeTop">
+    <div class="recipeTitlePic">
 <h1><%= randomRecipe.title %></h1>
+<br>
     <img src="<%= randomRecipe.image %>" alt="random recipe picture" style="width:400px">
+</div>
+<div class="recipeInfos">
     <p>Created By: <%= randomRecipe.createdBy %></p>
     <p>Cooking Time : <%= randomRecipe.cookingTime %> minuntes</p>
     <p>Country of Origin : <%= randomRecipe.countryOfOrigin %></p>
@@ -9,15 +14,24 @@
     <p>Cooking Level : <%= randomRecipe.level %></p>
     <p>Meal Type : <%= randomRecipe.mealType %></p>
     <p>Serves : <%= randomRecipe.serves %></p>
+</div>
+</div>
+<div class="recipeBottom">
+<div class="recipeIngredients">
     <h3>Ingredients : </h3>
 <ul>
     <% randomRecipe.ingredients.forEach(ingredient => { %>
         <li><%= ingredient %></li>
         <% }) %>
     </ul>
+</div>
+<div class="recipeDirections">
     <h3>Directions : </h3>
-    <ul><% randomRecipe.directions.map(direction => { %> 
-        <li><%= direction %></li>
+    <ul class="directionsUl"><% randomRecipe.directions.map(direction => { %> 
+        <li>Step <%= direction %></li>
     <% }) %>
     </ul>
-
+</div>
+</div>
+<br>
+<a href="/recipes/recipe/randomRecipe"><button class="btn" type="submit">Random Recipe</button></a>
