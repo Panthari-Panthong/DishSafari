@@ -44,6 +44,37 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
+router.get("/recipe/search", isLoggedIn, async (req, res, next) => {
+  try {
+    const allRecipes = await Recipe.find({
+      createdBy: req.session.currentUser,
+    });
+
+    const bmiUser = await BMI.find({
+      user: req.session.currentUser,
+    });
+
+    let bmi = 0;
+    let result = "";
+    let resultPic = "graph";
+    if (bmiUser.length !== 0) {
+      bmi = bmiUser[0].bmi;
+      result = bmiUser[0].result;
+      resultPic = bmiUser[0].resultPic;
+    }
+
+    res.render("user/profile", {
+      userInSession: req.session.currentUser,
+      allRecipes,
+      isQuery: false,
+      bmi,
+      result,
+      resultPic,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Handles the search query and retrieves the search results from the database
 router.post("/recipe/search", isLoggedIn, async (req, res, next) => {
@@ -55,10 +86,26 @@ router.post("/recipe/search", isLoggedIn, async (req, res, next) => {
       title: { $regex: queryTitle, $options: "i" },
     });
 
+    const bmiUser = await BMI.find({
+      user: req.session.currentUser,
+    });
+
+    let bmi = 0;
+    let result = "";
+    let resultPic = "graph";
+    if (bmiUser.length !== 0) {
+      bmi = bmiUser[0].bmi;
+      result = bmiUser[0].result;
+      resultPic = bmiUser[0].resultPic;
+    }
+
     res.render("user/profile", {
       userInSession: req.session.currentUser,
       queryRecipe,
       isQuery: true,
+      bmi,
+      result,
+      resultPic,
     });
   } catch (error) {
     next(error);
@@ -129,7 +176,7 @@ router.post(
       await Recipe.create({
         title,
         image: imageUrl,
-        cookingTime,
+        // image,
         countryOfOrigin,
         continent,
         mealType,
@@ -274,7 +321,7 @@ router.post(
         }
       );
 
-      res.redirect("/user/profile");
+      res.redirect(`/user/recipe/${req.params.recipeID}`);
     } catch (error) {
       next("ERROR", error);
     }
