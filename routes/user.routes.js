@@ -129,7 +129,7 @@ router.post(
       await Recipe.create({
         title,
         image: imageUrl,
-        cookingTime,
+        // image,
         countryOfOrigin,
         continent,
         mealType,
