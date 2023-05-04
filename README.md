@@ -2,7 +2,7 @@
 
 <h2>Description</h2>
 
-<p>DishSafari is an application that allows the User to explore the culinary world for new recipes and new inspirations. The User can either set up an accout where they would be able to add, edit and delete </p>
+<p>DishSafari is an application that allows the User to explore the culinary world for new recipes and new inspirations. The User can either set up an accout where they would be able to add, edit and delete their own recipes, or any visitor to the application can search in the database of recipes to get inspiration of what they would like to cook. For those who dont know what to cook there is the option of a "random recipe" which picks out a recipe completely at random.</p>
 
 ## User Stories
 
