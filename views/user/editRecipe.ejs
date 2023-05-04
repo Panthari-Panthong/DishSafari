@@ -1,80 +1,172 @@
 <div class="login">
 <h2>EDIT RECIPE</h2>
 </div>
-
-<form action="/user/recipe/<%- recipe._id %>/edit" method="post" enctype="multipart/form-data">
-        <div id="editCreateRecipe">
-        <label for="title">Title : <input class="inputFields" type="text" name="title" value="<%= recipe.title %>"></label>
-        <label for="image">Image :
-                <input class="inputFields" type="file" name="image">
-                <input type="text" name="existingImage" hidden value="<%= recipe.image %>">
-        </label>
-        <label for="cookingTime">Cooking Time : <input class="inputFields" type="number" name="cookingTime"
-                        value="<%= recipe.cookingTime %>" min="1"></label>
-        <label for="countryOfOrigin">Country Of Origin : <input class="inputFields" type="text" name="countryOfOrigin"
-                        value="<%= recipe.countryOfOrigin %>"></label>
-        <label for="continent">Continent : <select class="selectFields" name="continent" id="continent">
-                        <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> {
-                                %>
-                                <option value="<%- element %>" <% if(element===recipe.continent) { %>
-                                        selected
-                                        <% } %>
-                                                ><%- element %>
-                                </option>
-                                <% }) %>
-                </select>
-        </label>
-        <label for="level">Level : <select class="selectFields" name="level" id="level">
-                        <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
-                                <option value="<%- element %>" <% if(element===recipe.level) { %>
-                                        selected
-                                        <% } %>><%- element %>
-                                </option>
-                                <% }) %>
-                </select>
-        </label>
-        <label for="mealType">Meal Type : <select class="selectFields" name="mealType" id="mealType">
-                        <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
-                                <option value="<%- element %>" <% if(element===recipe.mealType) { %>
-                                        selected
-                                        <% } %>><%- element %>
-                                </option>
-                                <% }) %>
-                </select>
-        </label>
-        <label for="serves">Serves : <input class="inputFields" type="number" name="serves" value="<%= recipe.serves %>"> </label>
-
-
-        <label for="ingredients">Ingredients : <textarea name="ingredients" cols="40" rows="10"
-                        placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "><%= recipe.ingredients %></textarea></label>
-
-        <label for="directions">Directions :
-                <textarea name="directions" cols="40" rows="10" placeholder="Please start with 
-            Step 1. ... , 
-            Step 2. ..., 
-            etc."><%= directions %></textarea></label>
-        <label for="recipeType">Recipe Type : <select class="selectFields" name="recipeType">
-                        <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
-                                <option value="<%- element %>" <% if(element===recipe.recipeType) { %>
-                                        selected
-                                        <% } %>><%- element %>
-                                </option>
-                                <% }) %>
-                </select>
-        </label>
+<div class="containerForm">
+        <form
+          action="/user/recipe/<%- recipe._id %>/edit""
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="row">
+            <div class="col-25">
+              <label for="title">Title : </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="title"
+                value="<%= recipe.title %>"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="image">Image : </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="file"
+                name="image"
+              />
+              <input type="text" name="existingImage" hidden value="<%= recipe.image %>">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="cookingTime">Cooking Time : </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="number"
+                name="cookingTime"
+                value="<%= recipe.cookingTime %>" min="1"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="countryOfOrigin">Country of Origin : </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="text"
+                name="countryOfOrigin"
+                value="<%= recipe.countryOfOrigin %>"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="continent">Continent : </label>
+            </div>
+            <div class="col-75">
+              <select name="continent" id="continent">
+                <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> { %>
+                <option value="<%- element %>" <% if(element===recipe.continent) { %>
+                        selected
+                        <% } %>><%- element %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="level">Level : </label>
+            </div>
+            <div class="col-75">
+              <select name="level" id="level">
+                <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
+                <option value="<%- element %>" <% if(element===recipe.level) { %>
+                        selected
+                        <% } %>><%- element %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="mealType">Meal Type : </label>
+            </div>
+            <div class="col-75">
+              <select name="mealType" id="mealType">
+                <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
+                <option value="<%- element %>" <% if(element===recipe.mealType) { %>
+                        selected
+                        <% } %>><%- element %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="serves">Serves : </label>
+            </div>
+            <div class="col-75">
+              <input
+                type="number"
+                name="serves"
+                value="<%= recipe.serves %>"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="ingredients">Ingredients : </label>
+            </div>
+            <div class="col-75">
+              <textarea
+                name="ingredients"
+                style="height: 150px"
+                placeholder="Please separator ingredients by using comma(,) Ex. 1 edd, 2 bacon, etc... "><%= ingredients %>
+</textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="directions">Directions : </label>
+            </div>
+            <div class="col-75">
+              <textarea
+                name="directions"
+                style="height: 150px"
+                placeholder="Please seperate the different directions by using the word Step followed my the number order of the direction, eg. 
+                        Step 1. Melt butter in a 13- x 9-inch baking dish, 
+                        Step 2. Combine flour, 1 cup sugar, baking powder, and salt; add milk, stirring just until dry ingredients are moistened. Pour batter over butter (do not stir), 
+                        Step 3. ..., etc."><%= directions %>
+                </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="recipeType">Recipe Type : </label>
+            </div>
+            <div class="col-75">
+              <select name="recipeType" id="recipeType">
+                <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
+                <option value="<%- element %>" <% if(element===recipe.recipeType) { %>
+                        selected
+                        <% } %>><%- element %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <br />
+          <div id="edit-btn">
         <button class="btn" type="submit">Edit</button>
-        </div>
-</form>
-
-        <br>
-        
-        <div id="edit-btn">
+          </div>
+        </form>
+      </div>
+      <br>
+      <div id="edit-btn">
         <form action="/user/recipe/<%- recipe._id %>/delete" method="post"
         onsubmit="return confirm('Are you sure you want to delete?');">
         <input type="hidden" name="confirmDelete" value="true">
         <button class="deleteBtn" type="submit">Delete</button>
         </div>
-</form>
-        
+        </form>
         
 

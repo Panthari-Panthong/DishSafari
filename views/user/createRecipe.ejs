@@ -1,11 +1,164 @@
-<a href="/user/profile">Back to profile!</a>
 <div class="login">
-<h2>CREATE RECIPE</h2>
+  <h2>CREATE RECIPE</h2>
 </div>
 
+<div class="containerForm">
+  <form
+    action="/user/recipe/create"
+    method="post"
+    autocomplete="off"
+    enctype="multipart/form-data"
+  >
+    <div class="row">
+      <div class="col-25">
+        <label for="title">Title : </label>
+      </div>
+      <div class="col-75">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Recipe Title.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="image">Image : </label>
+      </div>
+      <div class="col-75">
+        <input
+          type="file"
+          name="image"
+          id="image"
+          placeholder="Recipe Picture.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="cookingTime">Cooking Time : </label>
+      </div>
+      <div class="col-75">
+        <input
+          type="number"
+          name="cookingTime"
+          id="cookingTime"
+          placeholder="How many minutes.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="countryOfOrigin">Country of Origin : </label>
+      </div>
+      <div class="col-75">
+        <input
+          type="text"
+          name="countryOfOrigin"
+          id="countryOfOrigin"
+          placeholder="Country of Origin.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="continent">Continent : </label>
+      </div>
+      <div class="col-75">
+        <select name="continent" id="continent">
+          <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> { %>
+             <option value="<%- element %>"><%- element %></option>
+          <% }) %>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="level">Level : </label>
+      </div>
+      <div class="col-75">
+        <select name="level" id="level">
+                <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
+                        <option value="<%- element %>"><%- element %></option>
+                        <% }) %>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="mealType">Meal Type : </label>
+      </div>
+      <div class="col-75">
+        <select name="mealType" id="mealType">
+                <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
+                        <option value="<%- element %>"><%- element %></option>
+                        <% }) %>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="serves">Serves : </label>
+      </div>
+      <div class="col-75">
+        <input
+          type="number"
+          name="serves"
+          id="serves"
+          placeholder="How many servings.."
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="ingredients">Ingredients : </label>
+      </div>
+      <div class="col-75">
+        <textarea
+          name="ingredients"
+          id="ingredients"
+          placeholder="Please separate the different ingredients by using a comma(,) eg. ½ cup unsalted butter, 1 cup all-purpose flour, 2 cups sugar, etc... "
+          style="height: 150px"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="directions">Directions : </label>
+      </div>
+      <div class="col-75">
+        <textarea
+          name="directions"
+          id="directions"
+          placeholder="Please seperate the different directions by using the word Step followed my the number order of the direction, eg. 
+                  Step 1. Melt butter in a 13- x 9-inch baking dish, 
+                  Step 2. Combine flour, 1 cup sugar, baking powder, and salt; add milk, stirring just until dry ingredients are moistened. Pour batter over butter (do not stir), 
+                  Step 3. ..., etc."
+          style="height: 150px"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="recipeType">Recipe Type : </label>
+      </div>
+      <div class="col-75">
+        <select name="recipeType" id="recipeType">
+                <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
+                        <option value="<%- element %>"><%- element %></option>
+                        <% }) %>
+        </select>
+      </div>
+    </div>
+    <br />
+    <div id="edit-btn">
+      <button class="btn" type="submit">Create Recipe</button>
+    </div>
+  </form>
+</div>
 
-
-        <form action="/user/recipe/create" method="post" autocomplete="off" enctype="multipart/form-data">
+<!--    <form action="/user/recipe/create" method="post" autocomplete="off" enctype="multipart/form-data">
                 <div id="editCreateRecipe">
                 <label for="title">Title : <input class="inputFields" type="text" name="title" id="title"></label>
                 <label for="image">Image : <input class="inputFields" type="file" name="image" id="image"></label>
@@ -45,4 +198,4 @@
                 <br>
                 <button class="btn" type="submit">Create Recipe</button>
         </div>
-        </form>
+        </form> -->
