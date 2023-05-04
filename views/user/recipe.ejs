@@ -1,9 +1,13 @@
+<div class="recipeFull">
+    <div class="recipeTop">
+    <div class="recipeTitlePic">
 <h1>
     <%= recipe.title %>
 </h1>
-<div>
+<br>
     <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 400px" />
-    <br />
+</div>
+<div class="recipeInfos">
     <p>Cooking Time : <%= recipe.cookingTime %> minutes</p>
     <p>Country Of Origin : <%= recipe.countryOfOrigin %>
     </p>
@@ -13,6 +17,10 @@
     </p>
     <p>Serves : <%= recipe.serves %>
     </p>
+</div>
+</div>
+<div class="recipeBottom">
+<div class="recipeIngredients">
     <h3>Ingredients :</h3>
     <ul>
         <% recipe.ingredients.forEach(ingredient=> { %>
@@ -21,22 +29,25 @@
             </li>
             <% }) %>
     </ul>
+</div>
+<div class="recipeDirections">
     <h3>Directions :</h3>
-    <ul>
+    <ul class="directionsUl">
         <% recipe.directions.map(direction=> { %>
             <li>
-                <%= direction %>
+                Step <%= direction %>
             </li>
             <% }) %>
     </ul>
-
+</div>
+</div>
     <a class="btn" href="/user/recipe/<%- recipe._id %>/edit">Edit</a>
 
-
+<br>
     <form action="/user/recipe/<%- recipe._id %>/delete" method="post"
         onsubmit="return confirm('Are you sure you want to delete?');">
         <input type="hidden" name="confirmDelete" value="true">
         <button class="deleteBtn" type="submit">Delete</button>
     </form>
-</div>
+
 

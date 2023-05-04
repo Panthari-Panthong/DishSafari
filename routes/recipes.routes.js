@@ -57,6 +57,19 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
   }
 });
 
+router.get("/recipe/filter", async (req, res) => {
+  try {
+    const allRecipes = await Recipe.find();
+    res.render("recipe/allRecipes", {
+      allRecipes,
+      isQuery: false,
+      userInSession: req.session.currentUser,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 //POST filter recipes
 router.post("/recipe/filter", async (req, res) => {
   try {
@@ -80,7 +93,11 @@ router.post("/recipe/filter", async (req, res) => {
 
     const filteredRecipes = await Recipe.find(filters);
     // console.log(filteredRecipes);
-    res.render("recipe/allRecipes", { filteredRecipes, isQuery: true });
+    res.render("recipe/allRecipes", {
+      filteredRecipes,
+      isQuery: true,
+      userInSession: req.session.currentUser,
+    });
   } catch (error) {
     console.error(error);
   }

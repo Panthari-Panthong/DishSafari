@@ -1,9 +1,15 @@
+<div class="login">
 <h1>Edit BMI</h1>
-
+</div>
+<br>
+<div class="login-form">
 <form action="/bmi/<%- userInSession._id %>/edit" method="post">
-        <label for="height">Height (m) : <input type="number" name="height" step="0.01" min="0"
+        <label for="height">Height (m) : <input class="input" type="number" name="height" step="0.01" min="0"
                         value="<%- bmi.height %>" required></label><br><br>
-        <label for="weight">Weight (kg): <input type="number" name="weight" step="0.01" min="0"
+        <label for="weight">Weight (kg): <input class="input" type="number" name="weight" step="0.01" min="0"
                         value="<%- bmi.weight %>" required></label><br><br>
-        <button type="submit">Calculate BMI</button>
-</form>
+                        <div id="login-btn">
+                        <button class="btn" type="submit">Calculate BMI</button>
+                                </div>
+                </form>
+</div>
