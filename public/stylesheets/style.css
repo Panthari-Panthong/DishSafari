@@ -26,10 +26,12 @@ nav a {
 body {
   font-family: 'Comfortaa', cursive;
   background-color: rgb(233, 229, 214);
+  margin-bottom: 50px;
 }
 
 a {
-  color: #00b7ff;
+  /* color: rgb(70, 78, 46); */
+  text-decoration: none;
 }
 
 .logo {
@@ -39,11 +41,15 @@ a {
 footer {
   background-color: rgb(54, 39, 6);
   color: rgb(233, 229, 214);
-  height: 50px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+  position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .homepage-logo {
@@ -68,6 +74,10 @@ justify-content: center;
   padding: 10px 30px;
   border: rgb(54, 39, 6) solid 0.5px;
   border-radius: 15px;
+}
+
+h1 h2 {
+color: rgb(70, 78, 46);
 }
 
 #about-us {
@@ -96,7 +106,7 @@ justify-content: center;
   color: rgb(70, 78, 46);
   display: flex;
   justify-content: center;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
 }
 
 .login-form {
@@ -173,7 +183,7 @@ label {
   margin-right: 10px;
 } */
 
-input[type=text], input[type=password], select, textarea {
+input[type=text], input[type=password], input[type=number], select, textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -250,8 +260,24 @@ input[type=submit] {
   width: fit-content;
 }
 
+.container h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background: white;
+  color: rgb(70, 78, 46);
+}
+
 .recipeContainer {
   padding-left: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipeContainerProfile {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -297,6 +323,76 @@ input[type=submit] {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+}
+
+.recipeFull {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recipeTitlePic h1 {
+  text-align: center;
+}
+
+.recipeInfos{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipeSearch {
+  margin-top: 20px;
+}
+
+.recipeTop {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+}
+ 
+.recipeBottom {
+width: 70%;
+margin: 30px 0 0 0;
+}
+
+.recipeIngredients {
+  margin: 15px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.recipeDirections {
+  margin: 15px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.directionsUl {
+  list-style-type: none;
+  margin-left: -1em;
+}
+
+.recipeReviews {
+  width: 70%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hr {
+  width: 70%;
+  margin-top: 40px;
+}
+
+.stars {
+  display:flex;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 600px) {

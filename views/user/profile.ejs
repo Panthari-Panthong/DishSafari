@@ -1,26 +1,39 @@
 <% if(userInSession) { %>
     <div class="profileGreeting">
-    <h1>Welcome <%= userInSession.username %>! </h1>
+        <div class="recipeTop">
+         
+    <div class="recipeInfos">
+        <h1>Welcome <%= userInSession.username %>! </h1>
     <h2>BMI Result</h2>
     <p>Your BMI is <%= bmi.toFixed(1) %>
     </p>
     <p>Result : <%= result %>
     </p>
-    <img src="/images/BMI-<%- resultPic %>.png" alt="<%- resultPic %>" style="height: 200px;">
     <% if (bmi===0.0) { %>
-        <a href="/bmi/<%- userInSession._id %>">Calculate BMI</a>
+        <a href="/bmi/<%- userInSession._id %>"><button class="btn" type="submit">Calculate BMI</button></a>
         <% } else { %>
-            <a href="/bmi/<%- userInSession._id %>/edit">Calculate another BMI</a>
+            <a href="/bmi/<%- userInSession._id %>/edit"><button class="btn" type="submit">Calculate another BMI</button></a>
             <% } %>
-                <hr>
-                <p>Here are all your Recipes!</p>
+        </div>
+        <div class="recipeTitlePic">
+            <img src="/images/BMI-<%- resultPic %>.png" alt="<%- resultPic %>" style="height: 200px;">
+        </div>
+        </div>
+        <div class="hr"><hr></div>
+            <div class="recipeSearch">
+                
+                <br>
+                <h3>Here are all your Recipes!</h3>
                 <form action="/user/recipe/search" method="post" autocomplete="off">
                 <input type="text" name="query" placeholder="Search...">
+                <div id="edit-btn">
                 <button class="btn" type="submit">Search</button>
                 </form>
-                <a href="/user/profile">Clear!</a>
+                <a href="/user/profile"><button class="btn" type="submit">Clear</button></a>
+            </div>
+            </div>
       </div>
-      <br>
+      <div class="recipeContainerProfile">
                 <% if (!isQuery) { %>
                     <% allRecipes.forEach(recipe=> { %>
                           <div class="container">
@@ -45,11 +58,13 @@
                                     </div>
                                     <% }) %>
                                         <% } %>
-
+</div>
                                             <% } else { %>
                                                 <br>
                                                 <p>Still no logged in user, sorry!</p>
                                                 <% } %>
-
-                                                    <a href="/user/recipe/create">Create Recipe!</a>
+                                                <div id="edit-btn">
+                                                    <a href="/user/recipe/create"><button class="btn" type="submit">Create Recipe</button></a>
+                                                  </div>
+                                                    
 
