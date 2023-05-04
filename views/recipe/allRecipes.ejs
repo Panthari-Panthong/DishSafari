@@ -1,9 +1,11 @@
 <div class="login">
 <h2>Recipes</h2>
 </div>
+<div id="allRecipesLayout">
 <div class="container-filter">
-    <h3>Filter Recipes</h3>
+    
     <form action="/recipes/recipe/filter" method="POST">
+        <h3>Filter Recipes</h3>
         <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
         <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
                 <option value="pleaseSelect">Please Select</option>
@@ -42,8 +44,10 @@
             <br>
         <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
         <button class="btn" type="submit">Filter</button>
+        <br>
+        <a href="/recipes"><button class="btn" type="submit">Clear</button></a>
     </form>
-    <a href="/recipes">Clear!</a>
+    
 </div>
 <div class="recipeContainer">
     <% if (!isQuery) { %>
@@ -70,6 +74,7 @@
                         </div>
                         <% }) %>
                         <% } %>
+</div>
 </div>
 <br>
 <div id="randomSection">
