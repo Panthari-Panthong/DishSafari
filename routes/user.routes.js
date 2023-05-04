@@ -25,7 +25,7 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
 
     let bmi = 0;
     let result = "";
-    let resultPic = "";
+    let resultPic = "graph";
     if (bmiUser.length !== 0) {
       bmi = bmiUser[0].bmi;
       result = bmiUser[0].result;
@@ -123,7 +123,7 @@ router.post(
         imageUrl = req.file.path;
       } else {
         imageUrl =
-          "https://res.cloudinary.com/dkzhxg8ci/image/upload/v1683125073/DishSafari/Defalt-recipePic_in2b7k.jpg";
+          "https://res.cloudinary.com/dkzhxg8ci/image/upload/v1683186352/DishSafari/DishSafari-p1_eq5epm.jpg";
       }
 
       await Recipe.create({
