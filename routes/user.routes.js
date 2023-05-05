@@ -160,6 +160,7 @@ router.post(
         cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         recipeType,
@@ -179,6 +180,7 @@ router.post(
         cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         ingredients: newArringredient,
@@ -259,6 +261,11 @@ router.post(
         return element.trim();
       });
 
+      //Remove empty string in the ingredients array
+      const newIngredients = newArringredient.filter((str) => {
+        return str !== "";
+      });
+
       // ---------- End Ingredients -------------------
 
       // ---------- Start Directions -------------------
@@ -289,6 +296,7 @@ router.post(
         cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         recipeType,
@@ -309,9 +317,10 @@ router.post(
           cookingTime,
           countryOfOrigin,
           continent,
+          level,
           mealType,
           serves,
-          ingredients: newArringredient,
+          ingredients: newIngredients,
           directions: newDirection,
           recipeType,
           createdBy: req.session.currentUser,
