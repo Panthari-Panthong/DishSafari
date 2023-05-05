@@ -44,6 +44,8 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
+
+// 
 router.get("/recipe/search", isLoggedIn, async (req, res, next) => {
   try {
     const allRecipes = await Recipe.find({
@@ -84,6 +86,7 @@ router.post("/recipe/search", isLoggedIn, async (req, res, next) => {
       // $regex Selects documents where values match a specified regular expression.
       // $options: "i" Case insensitivity to match upper and lower cases.
       title: { $regex: queryTitle, $options: "i" },
+      createdBy : req.session.currentUser
     });
 
     const bmiUser = await BMI.find({
