@@ -62,9 +62,21 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
     const randomRecipeLength = oneRandomRecipe.length;
     const randomRecipeIndex = Math.floor(Math.random() * randomRecipeLength);
     const randomRecipe = oneRandomRecipe[randomRecipeIndex];
+
+    const userId = randomRecipe.createdBy[0];
+    const user = await User.findById(userId);
+
+    let createdBy = ""
+
+    if(user === null){
+      createdBy = "DishSafari"
+    }else{
+      createdBy = user.username
+    }
     res.render("recipe/randomRecipe", {
       randomRecipe,
       userInSession: req.session.currentUser,
+      createdBy
     });
   } catch (error) {
     console.error(error);
