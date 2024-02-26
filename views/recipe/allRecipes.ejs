@@ -1,81 +1,95 @@
-<div class="login">
-<h2>Recipes</h2>
-</div>
 <div id="allRecipesLayout">
-<div class="container-filter">
-    
+  <div class="container-filter">
     <form action="/recipes/recipe/filter" method="POST">
-        <h3>Filter Recipes</h3>
-        <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
-        <label for="recipeType">Recipe Type: <select name="recipeType" id="recipeType">
-                <option value="pleaseSelect">Please Select</option>
-                <option value="Meat">Meat</option>
-                <option value="Fish">Fish</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Vegan">Vegan</option>
-            </select></label>
-            <br>
-        <label for="mealType">Meal Type: <select name="mealType" id="mealType">
-                <option value="pleaseSelect">Please Select</option>
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snack">Snack</option>
-                <option value="Dessert">Dessert</option>
-            </select></label>
-            <br>
-        <label for="level">Level: <select name="level" id="level">
-                <option value="pleaseSelect">Please Select</option>
-                <option value="Novice">Novice</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-                <option value="Expert">Expert</option>
-            </select></label>
-            <br>
-        <label for="continent">Continent: <select name="continent" id="continent">
-                <option value="pleaseSelect">Please Select</option>
-                <option value="Asia">Asia</option>
-                <option value="Africa">Africa</option>
-                <option value="Australia">Australia</option>
-                <option value="Europe">Europe</option>
-                <option value="NorthAmerica">North America</option>
-                <option value="SouthAmerica">South America</option>
-            </select></label>
-        <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
-        <button class="btn" type="submit">Filter</button>
-        <a href="/recipes"><button class="btn" type="submit">Clear</button></a>
+      <h3>Filter Recipes</h3>
+      <!-- <label for="title">Title: <input type="text" name="title" id="title" placeholder="Name of Recipe"/></label> -->
+      <label for="recipeType"
+        >Recipe Type:
+        <select name="recipeType" id="recipeType">
+          <option value="pleaseSelect">Please Select</option>
+          <option value="Meat">Meat</option>
+          <option value="Fish">Fish</option>
+          <option value="Vegetarian">Vegetarian</option>
+          <option value="Vegan">Vegan</option>
+        </select></label
+      >
+      <br />
+      <label for="mealType"
+        >Meal Type:
+        <select name="mealType" id="mealType">
+          <option value="pleaseSelect">Please Select</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+          <option value="Dessert">Dessert</option>
+        </select></label
+      >
+      <br />
+      <label for="level"
+        >Level:
+        <select name="level" id="level">
+          <option value="pleaseSelect">Please Select</option>
+          <option value="Novice">Novice</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+          <option value="Expert">Expert</option>
+        </select></label
+      >
+      <br />
+      <label for="continent"
+        >Continent:
+        <select name="continent" id="continent">
+          <option value="pleaseSelect">Please Select</option>
+          <option value="Asia">Asia</option>
+          <option value="Africa">Africa</option>
+          <option value="Australia">Australia</option>
+          <option value="Europe">Europe</option>
+          <option value="NorthAmerica">North America</option>
+          <option value="SouthAmerica">South America</option>
+        </select></label
+      >
+      <!-- <label for="countryOfOrigin">Country of origin: <input type="text" name="countryOfOrigin" id="countryOfOrigin" /></label> -->
+      <button class="btn" type="submit">Filter</button>
+      <a href="/recipes"><button class="btn" type="submit">Clear</button></a>
     </form>
-    
+  </div>
+  <div class="allRecipesContainer">
+    <div class="login">
+      <h2>Recipes</h2>
+    </div>
+    <div class="recipeContainer">
+      <% if (!isQuery) { %> <% allRecipes.forEach(recipe=> { %>
+      <div class="container">
+        <a href="/recipes/<%- recipe._id %>">
+          <img
+            class="recipeImg"
+            src="<%= recipe.image %>"
+            alt="<%=recipe.title %>"
+          />
+          <h3 class="recipeName"><%= recipe.title %></h3>
+        </a>
+      </div>
+      <% }) %> <% } else { %> <% filteredRecipes.forEach(recipe=> { %>
+      <div class="container">
+        <a href="/recipes/<%- recipe._id %>">
+          <img
+            class="recipeImg"
+            src="<%= recipe.image %>"
+            alt=""
+            width="300px"
+          />
+          <h3 class="recipeName"><%= recipe.title %></h3>
+        </a>
+      </div>
+      <% }) %> <% } %>
+    </div>
+    <br />
+    <div id="randomSection">
+      <h2>DON'T KNOW WHAT TO COOK?</h2>
+      <a href="/recipes/recipe/randomRecipe"
+        ><button class="btn" type="submit">Random Recipe</button></a
+      >
+    </div>
+  </div>
 </div>
-<div class="recipeContainer">
-    <% if (!isQuery) { %>
-        <% allRecipes.forEach(recipe=> { %>
-            <div class="container">
-                <img src="<%= recipe.image %>" alt="" width="300px" />
-                <a href="/recipes/<%- recipe._id %>">
-                    <h3>
-                        <%= recipe.title %>
-                    </h3>
-                </a>    
-            </div>
-            <% }) %>
-
-                <% } else { %>
-                    <% filteredRecipes.forEach(recipe=> { %>
-                        <div class="container">
-                            <img src="<%= recipe.image %>" alt="" width="300px" />
-                            <a href="/recipes/<%- recipe._id %>">
-                                <h3>
-                                    <%= recipe.title %>
-                                </h3>
-                            </a>
-                        </div>
-                        <% }) %>
-                        <% } %>
-</div>
-</div>
-<br>
-<div id="randomSection">
-<h2>DON'T KNOW WHAT TO COOK?</h2>
-                        <a href="/recipes/recipe/randomRecipe"><button class="btn" type="submit">Random Recipe</button></a>
-                    </div>

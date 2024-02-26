@@ -67,8 +67,10 @@
       </div>
       <div class="col-75">
         <select name="continent" id="continent">
-          <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> { %>
-             <option value="<%- element %>"><%- element %></option>
+          <option value="" disabled selected>Choose a Continent..</option>
+          <% ["Asia" , "Africa" , "Australia" , "Europe" , "North America" ,
+          "South America"].forEach(element=> { %>
+          <option value="<%- element %>"><%- element %></option>
           <% }) %>
         </select>
       </div>
@@ -79,9 +81,11 @@
       </div>
       <div class="col-75">
         <select name="level" id="level">
-                <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
-                        <option value="<%- element %>"><%- element %></option>
-                        <% }) %>
+          <option value="" disabled selected>Choose a Level..</option>
+          <% ["Novice" , "Intermediate" , "Advanced" ,
+          "Expert"].forEach(element=> { %>
+          <option value="<%- element %>"><%- element %></option>
+          <% }) %>
         </select>
       </div>
     </div>
@@ -91,9 +95,11 @@
       </div>
       <div class="col-75">
         <select name="mealType" id="mealType">
-                <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
-                        <option value="<%- element %>"><%- element %></option>
-                        <% }) %>
+          <option value="" disabled selected>Choose a Meal Type..</option>
+          <% ["Breakfast" , "Lunch" , "Dinner" , "Snack" ,
+          "Dessert"].forEach(element=> { %>
+          <option value="<%- element %>"><%- element %></option>
+          <% }) %>
         </select>
       </div>
     </div>
@@ -145,9 +151,12 @@
       </div>
       <div class="col-75">
         <select name="recipeType" id="recipeType">
-                <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
-                        <option value="<%- element %>"><%- element %></option>
-                        <% }) %>
+          <option class="placeholder" value="" disabled selected>
+            Choose a Recipe Type..
+          </option>
+          <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
+          <option value="<%- element %>"><%- element %></option>
+          <% }) %>
         </select>
       </div>
     </div>
@@ -157,45 +166,3 @@
     </div>
   </form>
 </div>
-
-<!--    <form action="/user/recipe/create" method="post" autocomplete="off" enctype="multipart/form-data">
-                <div id="editCreateRecipe">
-                <label for="title">Title : <input class="inputFields" type="text" name="title" id="title"></label>
-                <label for="image">Image : <input class="inputFields" type="file" name="image" id="image"></label>
-                <label for="cookingTime">Cooking Time : <input class="inputFields" type="number" name="cookingTime" id="cookingTime" min="1"></label>
-                <label for="countryOfOrigin">Country Of Origin : <input class="inputFields" type="text" name="countryOfOrigin" id="countryOfOrigin"></label>
-                <label for="continent">Continent : <select class="selectFields" name="continent" id="continent">
-                <% ["Asia","Africa", "Australia" ,"Europe","North America","South America"].forEach(element=> { %>
-                <option value="<%- element %>"><%- element %></option>
-                <% }) %>
-                </select>
-        </label>
-                <label for="level">Level : <select class="selectFields" name="level" id="level">
-                <% ["Novice", "Intermediate" , "Advanced" , "Expert" ].forEach(element=> { %>
-                <option value="<%- element %>"><%- element %></option>
-                <% }) %>
-                </select>
-        </label>
-                <label for="mealType">Meal Type : <select class="selectFields" name="mealType" id="mealType">
-                <% ["Breakfast", "Lunch" , "Dinner" , "Snack" , "Dessert" ].forEach(element=> { %>
-                <option value="<%- element %>"><%- element %></option>
-                <% }) %>
-                </select></label>
-                <label for="serves">Serves : <input class="inputFields" type="number" name="serves" id="serves"></label>
-
-                <label for="ingredients">Ingredients : <textarea name="ingredients" cols="40" rows="10"
-                        placeholder="Please separate the different ingredients by using a comma(,) eg. ½ cup unsalted butter, 1 cup all-purpose flour, 2 cups sugar, etc... "></textarea></label>
-                <label for="directions">Directions : <textarea name="directions" cols="40" rows="10" placeholder="Please seperate the different directions by using the word Step followed my the number order of the direction, eg. 
-                        Step 1. Melt butter in a 13- x 9-inch baking dish, 
-                        Step 2. Combine flour, 1 cup sugar, baking powder, and salt; add milk, stirring just until dry ingredients are moistened. Pour batter over butter (do not stir), 
-                        Step 3. ..., etc."></textarea></label>
-                <label for="recipeType">Recipe Type : <select class="selectFields" name="recipeType">
-                <% ["Meat", "Fish" , "Vegetarian" , "Vegan" ].forEach(element=> { %>
-                <option value="<%- element %>"><%- element %></option>
-                <% }) %>
-                </select>
-        </label>
-                <br>
-                <button class="btn" type="submit">Create Recipe</button>
-        </div>
-        </form> -->

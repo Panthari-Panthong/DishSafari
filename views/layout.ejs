@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>
-    <%= appTitle %>
-  </title>
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-  <!-- Font for the Logo and text -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Comfortaa:wght@300&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/62087c0894.js" crossorigin="anonymous"></script>
-</head>
-<nav id="nav">
-  <div class="links">
-    <a href="/" class="nav-logo">DishSafari</a>
-  </div>
-  <div class="search-bar">
-    <a href="/">Home</a>
-    <a href="/recipes">Recipes</a>
-    <% if (locals.userInSession) { %>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= appTitle %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <!-- Font for the Logo and text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Comfortaa:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/62087c0894.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <nav id="nav">
+    <div class="links">
+      <a href="/" class="nav-logo">DishSafari</a>
+    </div>
+    <div class="search-bar">
+      <a href="/">Home</a>
+      <a href="/recipes">Recipes</a>
+      <% if (locals.userInSession) { %>
       <a href="/user/profile">Profile</a>
       <a href="/logout">Logout</a>
       <% } else { %>
-        <a href="/signup">SIGNUP</a>
-        <a href="/login">LOGIN</a>
-        <% } %>
+      <a href="/signup">SIGNUP</a>
+      <a href="/login">LOGIN</a>
+      <% } %>
+    </div>
+  </nav>
 
-  </div>
-</nav>
-
-<body>
-  <%- body %>
+  <body>
+    <%- body %>
 
     <script src="/js/script.js"></script>
-</body>
-<footer class="footer">
-  <p>©2023 - DishSafari</p>
-</footer>
-
+  </body>
+  <footer class="footer">
+    <p>
+      &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      - DishSafari
+    </p>
+  </footer>
 </html>
