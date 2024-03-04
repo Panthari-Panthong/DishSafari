@@ -44,6 +44,8 @@ router.get("/profile", isLoggedIn, async (req, res, next) => {
     next(error);
   }
 });
+
+// 
 router.get("/recipe/search", isLoggedIn, async (req, res, next) => {
   try {
     const allRecipes = await Recipe.find({
@@ -84,6 +86,7 @@ router.post("/recipe/search", isLoggedIn, async (req, res, next) => {
       // $regex Selects documents where values match a specified regular expression.
       // $options: "i" Case insensitivity to match upper and lower cases.
       title: { $regex: queryTitle, $options: "i" },
+      createdBy : req.session.currentUser
     });
 
     const bmiUser = await BMI.find({
@@ -160,6 +163,7 @@ router.post(
         cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         recipeType,
@@ -176,9 +180,10 @@ router.post(
       await Recipe.create({
         title,
         image: imageUrl,
-        // image,
+        cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         ingredients: newArringredient,
@@ -259,6 +264,11 @@ router.post(
         return element.trim();
       });
 
+      //Remove empty string in the ingredients array
+      const newIngredients = newArringredient.filter((str) => {
+        return str !== "";
+      });
+
       // ---------- End Ingredients -------------------
 
       // ---------- Start Directions -------------------
@@ -289,6 +299,7 @@ router.post(
         cookingTime,
         countryOfOrigin,
         continent,
+        level,
         mealType,
         serves,
         recipeType,
@@ -309,9 +320,10 @@ router.post(
           cookingTime,
           countryOfOrigin,
           continent,
+          level,
           mealType,
           serves,
-          ingredients: newArringredient,
+          ingredients: newIngredients,
           directions: newDirection,
           recipeType,
           createdBy: req.session.currentUser,

@@ -6,6 +6,9 @@ const Recipe = require("../models/Recipe.model");
 // Extra Reviews part
 const Review = require("../models/Review.model");
 
+//
+const User = require("../models/User.model");
+
 //GET all the recipes
 router.get("/", async (req, res, next) => {
   try {
@@ -25,6 +28,16 @@ router.get("/:recipeId", async (req, res, next) => {
   try {
     const onlyOneRecipe = await Recipe.findById(req.params.recipeId);
 
+    const userId = onlyOneRecipe.createdBy[0];
+    const user = await User.findById(userId);
+    let createdBy = ""
+
+    if(user === null){
+      createdBy = "DishSafari"
+    }else{
+      createdBy = user.username
+    }
+
     // ----------  Extra Reviews part
     const reviews = await Review.find({ recipe: req.params.recipeId }).populate(
       "recipe"
@@ -32,6 +45,7 @@ router.get("/:recipeId", async (req, res, next) => {
 
     res.render("recipe/oneRecipe", {
       onlyOneRecipe,
+      createdBy,
       reviews,
       recipeId: req.params.recipeId,
       userInSession: req.session.currentUser,
@@ -48,9 +62,21 @@ router.get("/recipe/randomRecipe", async (req, res, next) => {
     const randomRecipeLength = oneRandomRecipe.length;
     const randomRecipeIndex = Math.floor(Math.random() * randomRecipeLength);
     const randomRecipe = oneRandomRecipe[randomRecipeIndex];
+
+    const userId = randomRecipe.createdBy[0];
+    const user = await User.findById(userId);
+
+    let createdBy = ""
+
+    if(user === null){
+      createdBy = "DishSafari"
+    }else{
+      createdBy = user.username
+    }
     res.render("recipe/randomRecipe", {
       randomRecipe,
       userInSession: req.session.currentUser,
+      createdBy
     });
   } catch (error) {
     console.error(error);
