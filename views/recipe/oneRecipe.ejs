@@ -1,57 +1,49 @@
 <% if (onlyOneRecipe !==null) { %>
-  <div class="recipeFull">
+<div class="recipeFull">
   <div class="recipeTop">
-  <div class="recipeTitlePic">
-  <h1>
-    <%= onlyOneRecipe.title %>
-  </h1>
-  <br>
-  <img src="<%= onlyOneRecipe.image %>" alt="<%= onlyOneRecipe.title %>" style="width: 400px" />
-</div>
-<div class="recipeInfos">
-  <p>Created By : <%= createdBy %>
-  </p>  
-  <p>Cooking Time : <%= onlyOneRecipe.cookingTime %> minuntes</p>
-  <p>Country of Origin : <%= onlyOneRecipe.countryOfOrigin %>
-  </p>
-  <p>Continent : <%= onlyOneRecipe.continent %>
-  </p>
-  <p>Recipe Type : <%= onlyOneRecipe.recipeType %>
-  </p>
-  <p>Cooking Level : <%= onlyOneRecipe.level %>
-  </p>
-  <p>Meal Type : <%= onlyOneRecipe.mealType %>
-  </p>
-  <p>Serves : <%= onlyOneRecipe.serves %>
-  </p>
-</div>
-</div>
-<div class="recipeBottom">
-<div class="recipeIngredients">
-  <h3>Ingredients : </h3>
-  <ul>
-    <% onlyOneRecipe.ingredients.forEach(ingredient=> { %>
-      <li>
-        <%= ingredient %>
-      </li>
-      <% }) %>
-  </ul>
-</div>
-<div class="recipeDirections">
-  <h3>Directions : </h3>
-  <ul class="directionsUl">
-    <% onlyOneRecipe.directions.map(direction=> { %>
-      <li>
-        Step <%= direction %>
-      </li>
-      <% }) %>
-  </ul>
-</div>
-</div>
-<div class="hr">
-  <hr>
-</div>
-<div class="recipeReviews">
-  <% } %> <%- include('partials/reviews.ejs', {reviews : reviews}) %> <%- include('partials/reviewForm.ejs') %>
-</div>
+    <div class="recipeTitlePic">
+      <h1><%= onlyOneRecipe.title %></h1>
+      <br />
+      <img
+        src="<%= onlyOneRecipe.image %>"
+        alt="<%= onlyOneRecipe.title %>"
+        style="width: 400px"
+      />
+    </div>
+    <div class="recipeInfos">
+      <p>Created By : <%= onlyOneRecipe.createdBy %></p>
+      <p>Cooking Time : <%= onlyOneRecipe.cookingTime %> minuntes</p>
+      <p>Country of Origin : <%= onlyOneRecipe.countryOfOrigin %></p>
+      <p>Continent : <%= onlyOneRecipe.continent %></p>
+      <p>Recipe Type : <%= onlyOneRecipe.recipeType %></p>
+      <p>Cooking Level : <%= onlyOneRecipe.level %></p>
+      <p>Meal Type : <%= onlyOneRecipe.mealType %></p>
+      <p>Serves : <%= onlyOneRecipe.serves %></p>
+    </div>
+  </div>
+  <div class="recipeBottom">
+    <div class="recipeIngredients">
+      <h3>Ingredients :</h3>
+      <ul>
+        <% onlyOneRecipe.ingredients.forEach(ingredient=> { %>
+        <li><%= ingredient %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <div class="recipeDirections">
+      <h3>Directions :</h3>
+      <ul class="directionsUl">
+        <% onlyOneRecipe.directions.map(direction=> { %>
+        <li>Step <%= direction %></li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+  <div class="hr">
+    <hr />
+  </div>
+  <div class="recipeReviews">
+    <% } %> <%- include('partials/reviews.ejs', {reviews : reviews}) %> <%-
+    include('partials/reviewForm.ejs') %>
+  </div>
 </div>

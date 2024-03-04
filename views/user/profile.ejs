@@ -16,7 +16,7 @@
                                 BMI</button></a>
                         <% } %>
             </div>
-            <div class="recipeTitlePic">
+            <div class="bmiPic">
                 <img src="/images/BMI-<%- resultPic %>.png" alt="<%- resultPic %>" style="height: 200px;">
             </div>
         </div>
@@ -40,9 +40,9 @@
         <% if (!isQuery) { %>
             <% allRecipes.forEach(recipe=> { %>
                 <div class="container">
-                    <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                     <a href="/user/recipe/<%= recipe._id %>">
-                        <h3>
+                    <img class='profileRecipeImg' src="<%= recipe.image %>" alt="<%= recipe.title %>">
+                        <h3 class="recipeName profileRecipeName">
                             <%= recipe.title %>
                         </h3>
                     </a>
@@ -52,9 +52,9 @@
                     <% } else { %>
                         <% queryRecipe.forEach(recipe=> { %>
                             <div class="container">
-                                <img src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
+                                <img class='profileRecipeImg' src="<%= recipe.image %>" alt="<%= recipe.title %>" style="width: 300px;">
                                 <a href="/user/recipe/<%= recipe._id %>">
-                                    <h3>
+                                    <h3 class="recipeName profileRecipeName">
                                         <%= recipe.title %>
                                     </h3>
                                 </a>

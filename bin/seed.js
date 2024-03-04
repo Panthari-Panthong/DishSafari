@@ -1,20 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const Recipe = require("../models/Recipe.model");
+const Recipe = require('../models/Recipe.model');
 
-const data = require("../data.json");
+const data = require('../data.json');
 
-require("../db/index");
-
-
+require('../db/index');
 
 const insertData = async () => {
   try {
     let insertedRecipes = await Recipe.insertMany(data);
-    console.log(insertedRecipes)
+    console.log(insertedRecipes);
   } catch (error) {
     mongoose.connection.close();
-    console.log("ERROR", error);
+    console.log('ERROR', error);
   } finally {
     mongoose.connection.close();
   }
